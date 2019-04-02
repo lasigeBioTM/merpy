@@ -1,2 +1,2 @@
-from .merpy import get_entities
-__all__ = ['get_entities']
+from .merpy import get_entities, generate_lexicon
+__all__ = ["get_entities", "generate_lexicon"]
