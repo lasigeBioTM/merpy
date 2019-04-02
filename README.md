@@ -26,6 +26,13 @@ For example, to install GNU awk on Ubuntu:
 sudo apt-get install gawk
 ```
 
+## Installation
+
+
+```bash
+python setup.py install
+```
+
 ## Basic Usage
 
 ```python
