@@ -1,7 +1,7 @@
 import os
 from subprocess import Popen, PIPE
 import pkg_resources as pkg
-mer_path = pkg.resource_filename("merpy", "data/MER/")
+mer_path = pkg.resource_filename("merpy", "MER/")
 
 
 def generate_lexicon(lexicon):

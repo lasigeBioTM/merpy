@@ -1,0 +1,4 @@
+data/*_word*.txt
+data/*.owl
+*.pyc
+*~

@@ -14,5 +14,5 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_data={'merpy': ['data/MER/*.sh', 'data/MER/data/*','data/MER/*.txt']}
+    package_data={'merpy': ['MER/*','MER/*.txt']}
 )
