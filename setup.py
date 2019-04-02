@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='merpy',
-    version='0.0.5',
+    version='0.0.6',
     description='use MER inside python',
     author='Andre Lamurias',
     author_email='alamurias@lasige.di.fc.ul.pt',
