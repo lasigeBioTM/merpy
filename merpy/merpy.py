@@ -1,5 +1,6 @@
 import os
 import sys
+import glob
 from subprocess import Popen, PIPE
 import pkg_resources as pkg
 mer_path = pkg.resource_filename("merpy", "MER/")
@@ -36,4 +37,35 @@ def get_entities(text, lexicon):
 
 def download_mer():
     pass
+
+
+def get_lexicons():
+    all_lexicons, loaded_lexicons, links_lexicons = [], [], []
+    files = os.listdir(mer_path + "/data/")
+    
+    for f in files:
+        if f.endswith(".txt") and not (f.endswith("_word2.txt") or f.endswith("_words.txt") or f.endswith("_word1.txt") or f.endswith("_links.tsv") or f.endswith("_words2.txt")):
+            all_lexicons.append(".".join(f.split(".")[:-1]))
+    
+    for f in files:
+        if f.endswith("_words2.txt"): # TODO: verify if all files exist
+            loaded_lexicons.append("_".join(f.split("_")[:-1]))
+    
+    for f in files:
+        if f.endswith("_links.tsv"):
+            links_lexicons.append("_".join(f.split("_")[:-1]))
+    return all_lexicons, loaded_lexicons, links_lexicons
+
+def show_lexicons():
+    lexicons = get_lexicons()
+    print("lexicons preloaded:")
+    print(lexicons[0])
+    print()
+    print("lexicons loaded ready to use:")
+    print(lexicons[1])
+    print()
+    print("lexicons with linked concepts:")
+    print(lexicons[2])
+
+
 
