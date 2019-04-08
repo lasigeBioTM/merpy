@@ -1,9 +1,15 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+
 setup(
     name='merpy',
-    version='0.1.0',
+    version='0.1.1',
     description='use MER inside python',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author='Andre Lamurias',
     author_email='alamurias@lasige.di.fc.ul.pt',
     packages=["merpy"],

@@ -7,6 +7,9 @@ mer_path = pkg.resource_filename("merpy", "MER/")
 
 
 def generate_lexicon(lexicon):
+    """
+    Preprocess (/generate/load) lexicon
+    """
     cwd = os.getcwd()
     os.chdir(mer_path + "/data/") 
     if sys.version_info[0] == 3 and sys.version_info[1] > 5: 
@@ -40,6 +43,9 @@ def download_mer():
 
 
 def get_lexicons():
+    """
+    Returns list of all lexicons in data directory, as well as pre-processed (loaded) lexicons and lexicons with links file
+    """ 
     all_lexicons, loaded_lexicons, links_lexicons = [], [], []
     files = os.listdir(mer_path + "/data/")
     

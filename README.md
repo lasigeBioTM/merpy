@@ -27,7 +27,10 @@ sudo apt-get install gawk
 ```
 
 ## Installation
-
+```bash
+pip install merpy
+```
+or
 
 ```bash
 python setup.py install
@@ -42,5 +45,15 @@ python setup.py install
 >>> entities = merpy.get_entities(document, "hp")
 >>> print(entities)
 [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], ['119', '125', 'severe', 'http://purl.obolibrary.org/obo/HP_0012828'], ['168', '173', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['214', '222', 'headache', 'http://purl.obolibrary.org/obo/HP_0002315'], ['224', '232', 'coughing', 'http://purl.obolibrary.org/obo/HP_0012735'], ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378'], ['175', '185', 'runny nose', 'http://purl.obolibrary.org/obo/HP_0031417']]
+>>> lexicons = merpy.get_lexicons()
+>>> merpy.show_lexicons()
+lexicons preloaded:
+['lexicon', 'go', 'cell_line_and_cell_type', 'chebi_lite', 'chemical', 'hp', 'disease', 'wordnet_nouns', 'hpo', 'radlex', 'doid', 'protein', 'hpomultilang', 'tissue_and_organ', 'mirna', 'subcellular_structure']
+
+lexicons loaded ready to use:
+['lexicon', 'doid', 'hp']
+
+lexicons with linked concepts:
+['doid', 'hp', 'go', 'chebi_lite', 'lexicon']
 
 ```
