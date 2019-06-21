@@ -25,6 +25,8 @@
 
 # set -x #debug
 use_stopwords=1
+remove_fullstops=0
+min_firstword=3 #min number of alpha chars in first word
 stopwords=stopwords.txt
 
 OIFS=$IFS
@@ -44,9 +46,11 @@ fi
 declare text=$(tr '[:upper:]' '[:lower:]' <<< "$original_text") # Make text lowercase so the system is case insensitive
 text=$(sed "s/[^[:alnum:][:space:]()]/./g" <<< "$text") # Replace special characters
 text=$(sed -e 's/[[:space:]()@]\+/ /g' <<< $text) # remove multiple whitespace
-text=$(sed -e 's/\.$//' -e 's/\. / /g' <<< $text) # remove full stops
+if [ $remove_fullstops -eq 1 ]; then
+    text=$(sed -e 's/\.$//' -e 's/\. / /g' <<< $text) # remove full stops
+fi
 if [ $use_stopwords -eq 1 ]; then
-text=$(tr ' ' '\n' <<< $text | grep -v -w -f $stopwords | tr '\n' ' ') # Remove stopwords
+    text=$(tr ' ' '\n' <<< $text | grep -v -w -f $stopwords | tr '\n' ' ') # Remove stopwords
 fi
 # | egrep '[[:alpha:]]{3,}'  and words with less than 3 characters
 text=$(sed -e 's/^ *//' -e 's/ *$//' <<< $text) # Remove leading and trailing whitespace
@@ -141,7 +145,7 @@ get_entities_source_words () {
 	if [ ${#piped_pair_text} -ge 2 ]; then
 		# finds the two-first-word matches
 		local matches
-		matches=$(egrep '^('"$piped_pair_text"')$' "$labels2" | egrep '[[:alpha:]]{5,}' | tr '\n' '|' | sed 's/|[[:space:]]*$//' )
+		matches=$(egrep '^('"$piped_pair_text"')$' "$labels2" | egrep '[[:alpha:]]{'$min_firstword',}' | tr '\n' '|' | sed 's/|[[:space:]]*$//' )
         if [ ${#matches} -ge 2 ]; then
             # finds the more-words matches based on the previous matches
 			local fullmatches
@@ -175,8 +179,8 @@ get_entities_source () {
 	if [ -e "$source"_links.tsv ]; then
 	    while read line
 	    do
-		declare label=$(sed -e 's/^[0-9 \t]*//' <<< $line) 
-		
+		#declare label=$(sed -e 's/^[0-9 \t]*//' <<< $line) 
+		declare label=$(cut -d$'\t' -f3- <<< $line)
 		declare text=$(sed "s/[^[:alnum:][:space:]()]/./g" <<< "$label") # Replace special characters
 		text=$(sed -e 's/[[:space:]()@]\+/ /g' <<< $text) # remove multiple whitespace
 		text=$(sed -e 's/\.$//' -e 's/\. / /g' <<< $text) # remove full stops
