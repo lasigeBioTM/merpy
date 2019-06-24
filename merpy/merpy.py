@@ -8,7 +8,7 @@ import requests
 mer_path = pkg.resource_filename("merpy", "MER/")
 
 
-def generate_lexicon(lexicon):
+def process_lexicon(lexicon):
     """
     Preprocess (/generate/load) lexicon
     """
@@ -31,6 +31,10 @@ def generate_lexicon(lexicon):
     stdout, stderr = session.communicate()
     print(stdout, stderr)
     os.chdir(cwd)
+
+
+def generate_lexicon(lexicon):
+    process_lexicon(lexicon)
 
 
 def get_entities(text, lexicon):
@@ -62,6 +66,12 @@ def get_entities(text, lexicon):
 
 def download_mer():
     pass
+
+
+def create_lexicon(entities, name):
+    with open(mer_path + "/data/" + name + ".txt", "w") as f:
+        f.write("\n".join(entities))
+    print("wrote {} lexicon".format(name))
 
 
 def download_lexicon(url, name):
