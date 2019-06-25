@@ -1,3 +1,5 @@
+[![Downloads](https://pepy.tech/badge/merpy)](https://pepy.tech/project/merpy)
+
 Use MER scripts inside python.
 
 (from the MER repository)
@@ -40,7 +42,7 @@ python setup.py install
 
 ```python
 >>> import merpy
->>> merpy.generate_lexicon("hp")
+>>> merpy.process_lexicon("hp")
 >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
 >>> entities = merpy.get_entities(document, "hp")
 >>> print(entities)
@@ -55,5 +57,11 @@ lexicons loaded ready to use:
 
 lexicons with linked concepts:
 ['doid', 'hp', 'go', 'chebi_lite', 'lexicon']
+>>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+wrote genelist lexicon
+>>> merpy.process_lexicon("genelist")
+>>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi")
+wrote chebi lexicon
+>>> merpy.process_lexicon("chebi")
 
 ```
