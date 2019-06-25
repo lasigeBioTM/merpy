@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='merpy',
-    version='0.1.2',
+    version='0.2.0',
     description='use MER inside python',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -21,6 +21,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     package_data={'merpy': ['MER/*','MER/data/*']},
+    requires=["requests"],
     extras_require={
         'dev': [
             'setuptools-changelog',
