@@ -1,12 +1,19 @@
+0.2.2 (2019-06-27)
+=================
+
+Bug Fixes
+---------
+- Fix debug output on getentities
+
 0.2.1 (2019-06-25)
 ==================
 
 Bug Fixes
 ---------
-- Add requests to isntall requirements
+- Add requests to install requirements
 
 
-0.3.0 (2019-06-24)
+0.2.0 (2019-06-24)
 ==================
 
 New Features

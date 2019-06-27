@@ -23,7 +23,7 @@
 # @authors F. Couto, L. Campos, and A. Lamurias                               #
 ###############################################################################
 
-set -x #debug
+# set -x #debug
 use_stopwords=1
 remove_fullstops=0
 min_firstword=3 #min number of alpha chars in first word
