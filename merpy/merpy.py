@@ -12,31 +12,41 @@ import requests
 mer_path = pkg.resource_filename("merpy", "MER/")
 
 
-def process_lexicon(lexicon):
+def process_lexicon(lexicon, ltype="txt"):
     """Preprocess (/generate/load) lexicon, generating index files
+
+    Input can be a file with one entity per line or an OWL ontology
 
 
     :param lexicon: name of previously downloaded lexicon to be used
     :type lexicon: string
+    :param ltype: lexicon type (txt, owl, or rdf)
+    :type ltype: string
 
     :Example:
 
     >>> import merpy
-    >>> merpy.process_lexicon("hp")
-
+    >>> merpy.process_lexicon("hp", "txt")
+    >>> merpy.download_lexicon("https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl", "metals", "owl")
+    wrote metals lexicon
+    >>> merpy.process_lexicon("metals", "owl")
+    >>> merpy.get_entities("gold silver metal", "metals")
+    [['0', '4', 'gold', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold'], \
+['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver'], \
+['12', '17', 'metal', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#metal']]
     """
     cwd = os.getcwd()
     os.chdir(mer_path + "/data/")
     if sys.version_info[0] == 3 and sys.version_info[1] > 5:
         session = Popen(
-            ["../produce_data_files.sh", lexicon],
+            ["../produce_data_files.sh", lexicon + "." + ltype],
             stdout=PIPE,
             stderr=PIPE,
             encoding="utf8",
         )
     else:
         session = Popen(
-            ["../produce_data_files.sh", lexicon],
+            ["../produce_data_files.sh", lexicon + "." + ltype],
             stdout=PIPE,
             stderr=PIPE,
             universal_newlines=True,
@@ -116,10 +126,6 @@ def download_mer():
         os.chmod(mer_path + script_name, stat.S_IRWXU)
 
 
-def create_lexicon_from_ontology(ontology):
-    pass
-
-
 def create_lexicon(entities, name):
     """Create lexicon from list of entities
 
@@ -142,13 +148,14 @@ def create_lexicon(entities, name):
     print("wrote {} lexicon".format(name))
 
 
-def download_lexicon(url, name):
+def download_lexicon(url, name, format="txt"):
     """Download lexicon from external resource
 
     :param url: URL to download lexicon
     :type url: string
     :param name: name of lexicon
     :type name: string
+    :param format: format of lexicon file (txt, owl or rdf)
 
     :Example:
         >>> import merpy
@@ -159,7 +166,7 @@ def download_lexicon(url, name):
         [['0', '8', 'caffeine']]
     """
     r = requests.get(url)
-    with open(mer_path + "/data/" + name + ".txt", "wb") as f:
+    with open(mer_path + "/data/" + name + "." + format, "wb") as f:
         f.write(r.content)
     print("wrote {} lexicon".format(name))
 
@@ -172,11 +179,8 @@ def get_lexicons():
 
     :Example:
         >>> import merpy
-        >>> merpy.get_lexicons()
-        (['lexicon', 'go', 'cell_line_and_cell_type', 'chebi_lite', 'chemical', 'hp', 'disease', 'wordnet_nouns', \
-'hpo', 'radlex', 'doid', 'genelist', 'chebi', 'protein', 'hpomultilang', 'tissue_and_organ', 'gene', 'mirna', \
-'subcellular_structure'], ['gene', 'lexicon', 'chebi', 'doid', 'genelist', 'hp'], \
-['doid', 'hp', 'go', 'chebi_lite', 'lexicon'])
+        >>> merpy.get_lexicons() # doctest: +ELLIPSIS
+        ([...], [...], [...])
 
     """
     all_lexicons, loaded_lexicons, links_lexicons = [], [], []
@@ -207,15 +211,15 @@ def show_lexicons():
 
     :Example:
     >>> import merpy
-    >>> merpy.show_lexicons()
+    >>> merpy.show_lexicons() # doctest: +ELLIPSIS
     lexicons preloaded:
-    ['lexicon', 'go', 'cell_line_and_cell_type', 'chebi_lite', 'chemical', 'hp', 'disease', 'wordnet_nouns', 'hpo', 'radlex', 'doid', 'genelist', 'chebi', 'protein', 'hpomultilang', 'tissue_and_organ', 'gene', 'mirna', 'subcellular_structure']
+    [...]
     <BLANKLINE>
     lexicons loaded ready to use:
-    ['gene', 'lexicon', 'chebi', 'doid', 'genelist', 'hp']
+    [...]
     <BLANKLINE>
     lexicons with linked concepts:
-    ['doid', 'hp', 'go', 'chebi_lite', 'lexicon']
+    [...]
     """
     lexicons = get_lexicons()
     print("lexicons preloaded:")
