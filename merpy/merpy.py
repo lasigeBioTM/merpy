@@ -1,6 +1,10 @@
 import os
 import sys
+import stat
 import glob
+import zipfile
+import shutil
+import urllib.request
 from subprocess import Popen, PIPE
 import pkg_resources as pkg
 import requests
@@ -93,7 +97,23 @@ def get_entities(text, lexicon):
 
 
 def download_mer():
-    pass
+    """Download latest version of MER from GitHub.
+    
+    :Example:
+        >>> import merpy
+        >>> merpy.download_mer()
+    
+    """
+
+    download_link = "https://github.com/lasigeBioTM/MER/archive/master.zip"
+    urllib.request.urlretrieve(download_link, "dishin.zip")[0]
+    with zipfile.ZipFile("dishin.zip", "r") as zip_ref:
+        zip_ref.extractall()
+
+    bash_scripts = ["get_entities.sh", "get_similarity.sh", "produce_data_files.sh"]
+    for script_name in bash_scripts:
+        shutil.move("MER-master/" + script_name, mer_path + script_name)
+        os.chmod(mer_path + script_name, stat.S_IRWXU)
 
 
 def create_lexicon_from_ontology(ontology):

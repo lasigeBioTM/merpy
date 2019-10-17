@@ -6,6 +6,7 @@ from .merpy import (
     get_lexicons,
     download_lexicon,
     create_lexicon,
+    download_mer,
 )
 
 name = "merpy"
@@ -17,4 +18,5 @@ __all__ = [
     "get_lexicons",
     "download_lexicon",
     "create_lexicon",
+    "download_mer",
 ]
