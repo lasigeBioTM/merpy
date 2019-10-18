@@ -172,6 +172,9 @@ def download_lexicons(
     tf.extractall(mer_path + "data")
     tf.close()
 
+    # clean up
+    os.remove("lexicons201907.tgz")
+
 
 def create_lexicon(entities, name):
     """Create lexicon from list of entities
