@@ -52,7 +52,7 @@ def process_lexicon(lexicon, ltype="txt"):
             universal_newlines=True,
         )
     stdout, stderr = session.communicate()
-    print(stdout, stderr, file=sys.stderr)
+    # print(stdout, stderr, file=sys.stderr)
     os.chdir(cwd)
 
 
@@ -146,6 +146,38 @@ def create_lexicon(entities, name):
     with open(mer_path + "/data/" + name + ".txt", "w") as f:
         f.write("\n".join(entities))
     print("wrote {} lexicon".format(name))
+
+
+def create_mappings(mapped_entities, name):
+    """Create links file to entity linking/mapping. 
+
+    You must also create a lexicon using create_lexicon function
+    
+    :param mapped_entities: dictionary mapping each entity to one or more concepts
+    :type mapped_entities: dict
+    :param name: name of lexicon
+    :type name: string
+
+    :Example:
+        >>> import merpy
+        >>> mappings = {"gold": 1, "silver": 2, "metal": [3,4]}
+        >>> create_lexicon(mappings.keys(), "metals")
+        wrote metals lexicon
+        >>> create_mappings(mappings, "metals")
+        wrote metals mappings
+        >>> merpy.process_lexicon("metals")
+        >>> merpy.get_entities("gold and silver are metals", "metals")
+        [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
+    """
+    with open(mer_path + "data/" + name + "_links.tsv", "w") as links_file:
+        for e in mapped_entities:
+            if type(mapped_entities[e]) is list:
+                for mapping in mapped_entities[e]:
+                    links_file.write(e + "\t" + str(mapping) + "\n")
+            else:
+                links_file.write(e + "\t" + str(mapped_entities[e]) + "\n")
+
+    print("wrote {} mappings".format(name))
 
 
 def download_lexicon(url, name, format="txt"):
