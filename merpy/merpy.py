@@ -8,8 +8,22 @@ import urllib.request
 from subprocess import Popen, PIPE
 import pkg_resources as pkg
 import requests
+import tarfile
 
 mer_path = pkg.resource_filename("merpy", "MER/")
+
+
+def check_gawk():
+
+    """Check whether gawk is on PATH and marked as executable.
+
+    """
+    # https://stackoverflow.com/a/34177358/3605086
+    gawk_result = shutil.which("gawk")
+
+    if gawk_result is None:
+        print("please install gawk before using merpy")
+        sys.exit()
 
 
 def process_lexicon(lexicon, ltype="txt"):
@@ -26,6 +40,7 @@ def process_lexicon(lexicon, ltype="txt"):
     :Example:
 
     >>> import merpy
+    >>> merpy.download_lexicons()
     >>> merpy.process_lexicon("hp", "txt")
     >>> merpy.download_lexicon("https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl", "metals", "owl")
     wrote metals lexicon
@@ -35,6 +50,7 @@ def process_lexicon(lexicon, ltype="txt"):
 ['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver'], \
 ['12', '17', 'metal', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#metal']]
     """
+    check_gawk()
     cwd = os.getcwd()
     os.chdir(mer_path + "/data/")
     if sys.version_info[0] == 3 and sys.version_info[1] > 5:
@@ -72,14 +88,16 @@ def get_entities(text, lexicon):
 
     :Example:
 
-    >>> import merpy
-    >>> merpy.process_lexicon("hp")
-    >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
-    >>> merpy.get_entities(document, "hp")
-    [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
+        >>> import merpy
+        >>> merpy.download_lexicons()
+        >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+        >>> merpy.get_entities(document, "hp")
+        [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
+['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], \
 ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378']]
     
     """
+    check_gawk()
     cwd = os.getcwd()
     os.chdir(mer_path)
     if sys.version_info[0] == 3 and sys.version_info[1] > 5:
@@ -108,7 +126,7 @@ def get_entities(text, lexicon):
 
 def download_mer():
     """Download latest version of MER from GitHub.
-    
+
     :Example:
         >>> import merpy
         >>> merpy.download_mer()
@@ -122,8 +140,37 @@ def download_mer():
 
     bash_scripts = ["get_entities.sh", "get_similarity.sh", "produce_data_files.sh"]
     for script_name in bash_scripts:
-        shutil.move("MER-master/" + script_name, mer_path + script_name)
-        os.chmod(mer_path + script_name, stat.S_IRWXU)
+        shutil.move("MER-master/" + script_name, mer_path + "/" + script_name)
+        os.chmod(mer_path + "/" + script_name, stat.S_IRWXU)
+
+    # clean up
+    os.remove("dishin.zip")
+    shutil.rmtree("MER-master/")
+
+
+def download_lexicons(
+    download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons201907.tgz"
+):
+    """Download preprocessed lexicons
+
+    :param link: link with tar file containing preprocessed lexicons
+    :type link: string
+
+    :Example:
+        >>> import merpy
+        >>> merpy.download_lexicons()
+        >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+        >>> merpy.get_entities(document, "hp")
+        [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
+['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], \
+['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378']]
+
+    """
+
+    urllib.request.urlretrieve(download_link, "lexicons201907.tgz")[0]
+    tf = tarfile.open("lexicons201907.tgz", mode="r")
+    tf.extractall(mer_path + "data")
+    tf.close()
 
 
 def create_lexicon(entities, name):
@@ -169,7 +216,7 @@ def create_mappings(mapped_entities, name):
         >>> merpy.get_entities("gold and silver are metals", "metals")
         [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
     """
-    with open(mer_path + "data/" + name + "_links.tsv", "w") as links_file:
+    with open(mer_path + "/data/" + name + "_links.tsv", "w") as links_file:
         for e in mapped_entities:
             if type(mapped_entities[e]) is list:
                 for mapping in mapped_entities[e]:

@@ -2,6 +2,7 @@
 
 Use MER scripts inside python.
 
+
 (from the MER repository)
 
 MER is a Named-Entity Recognition tool which given any lexicon and any input text returns the list of 
@@ -38,10 +39,18 @@ or
 python setup.py install
 ```
 
+Then you might want to update the MER scripts and download preprocessed data:
+```python
+>>> import merpy
+>>> merpy.download_mer()
+>>> merpy.download_lexicons()
+```
+
 ## Basic Usage
 
 ```python
 >>> import merpy
+>>> merpy.download_lexicons()
 >>> merpy.process_lexicon("hp")
 >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
 >>> entities = merpy.get_entities(document, "hp")
