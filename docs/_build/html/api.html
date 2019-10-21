@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API &mdash; merpy  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Dependencies" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> merpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">merpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-merpy">
+<span id="api"></span><h1>API<a class="headerlink" href="#module-merpy" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="merpy.get_entities">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">get_entities</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">lexicon</em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.get_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get entities mention in a text</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>string</em>) – Text to be processed</p></li>
+<li><p><strong>lexicon</strong> (<em>string</em>) – Lexicon used to get the entities</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of entities with index and ontology concept</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;Influenza, commonly known as &quot;the flu&quot;, is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;hp&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;111&#39;, &#39;115&#39;, &#39;mild&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012825&#39;], [&#39;200&#39;, &#39;206&#39;, &#39;muscle&#39;, &#39;http://purl.obolibrary.org/obo/UBERON_0005090&#39;], [&#39;246&#39;, &#39;251&#39;, &#39;tired&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012378&#39;]]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.process_lexicon">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">process_lexicon</code><span class="sig-paren">(</span><em class="sig-param">lexicon</em>, <em class="sig-param">ltype='txt'</em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.process_lexicon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocess (/generate/load) lexicon, generating index files</p>
+<p>Input can be a file with one entity per line or an OWL ontology</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lexicon</strong> (<em>string</em>) – name of previously downloaded lexicon to be used</p></li>
+<li><p><strong>ltype</strong> (<em>string</em>) – lexicon type (txt, owl, or rdf)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;hp&quot;</span><span class="p">,</span> <span class="s2">&quot;txt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicon</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl&quot;</span><span class="p">,</span> <span class="s2">&quot;metals&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">)</span>
+<span class="go">wrote metals lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;metals&quot;</span><span class="p">,</span> <span class="s2">&quot;owl&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="s2">&quot;gold silver metal&quot;</span><span class="p">,</span> <span class="s2">&quot;metals&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;0&#39;, &#39;4&#39;, &#39;gold&#39;, &#39;https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold&#39;], [&#39;5&#39;, &#39;11&#39;, &#39;silver&#39;, &#39;https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver&#39;], [&#39;12&#39;, &#39;17&#39;, &#39;metal&#39;, &#39;https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#metal&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.show_lexicons">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">show_lexicons</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#merpy.show_lexicons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print lexicon list</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">show_lexicons</span><span class="p">()</span> 
+<span class="go">lexicons preloaded:</span>
+<span class="go">[...]</span>
+
+<span class="go">lexicons loaded ready to use:</span>
+<span class="go">[...]</span>
+
+<span class="go">lexicons with linked concepts:</span>
+<span class="go">[...]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.get_lexicons">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">get_lexicons</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#merpy.get_lexicons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list of all lexicons in data directory, as well as pre-processed (loaded) lexicons and lexicons with links file</p>
+<dl class="field-list">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>lists of all lexicons, loaded lexicons and lexicons with entity linking</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_lexicons</span><span class="p">()</span> 
+<span class="go">([...], [...], [...])</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.download_lexicon">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">download_lexicon</code><span class="sig-paren">(</span><em class="sig-param">url</em>, <em class="sig-param">name</em>, <em class="sig-param">format='txt'</em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.download_lexicon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download lexicon from external resource</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>string</em>) – URL to download lexicon</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – name of lexicon</p></li>
+<li><p><strong>format</strong> – format of lexicon file (txt, owl or rdf)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicon</span><span class="p">(</span><span class="s2">&quot;https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
+<span class="go">wrote chebi lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="s2">&quot;caffeine&quot;</span><span class="p">,</span> <span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;0&#39;, &#39;8&#39;, &#39;caffeine&#39;]]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.create_mappings">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">create_mappings</code><span class="sig-paren">(</span><em class="sig-param">mapped_entities</em>, <em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.create_mappings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create links file to entity linking/mapping.</p>
+<p>You must also create a lexicon using create_lexicon function</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mapped_entities</strong> (<em>dict</em>) – dictionary mapping each entity to one or more concepts</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – name of lexicon</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mappings</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;gold&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;silver&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;metal&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_lexicon</span><span class="p">(</span><span class="n">mappings</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s2">&quot;metals&quot;</span><span class="p">)</span>
+<span class="go">wrote metals lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_mappings</span><span class="p">(</span><span class="n">mappings</span><span class="p">,</span> <span class="s2">&quot;metals&quot;</span><span class="p">)</span>
+<span class="go">wrote metals mappings</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;metals&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="s2">&quot;gold and silver are metals&quot;</span><span class="p">,</span> <span class="s2">&quot;metals&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;0&#39;, &#39;4&#39;, &#39;gold&#39;, &#39;1&#39;], [&#39;9&#39;, &#39;15&#39;, &#39;silver&#39;, &#39;2&#39;]]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.create_lexicon">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">create_lexicon</code><span class="sig-paren">(</span><em class="sig-param">entities</em>, <em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.create_lexicon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create lexicon from list of entities</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entities</strong> (<em>list</em>) – list of entities</p></li>
+<li><p><strong>name</strong> (<em>string</em>) – name of lexicon</p></li>
+</ul>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">create_lexicon</span><span class="p">([</span><span class="s2">&quot;gene1&quot;</span><span class="p">,</span> <span class="s2">&quot;gene2&quot;</span><span class="p">,</span> <span class="s2">&quot;gene3&quot;</span><span class="p">],</span> <span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<span class="go">wrote genelist lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="s2">&quot;gene1 and gene2&quot;</span><span class="p">,</span> <span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;0&#39;, &#39;5&#39;, &#39;gene1&#39;], [&#39;10&#39;, &#39;15&#39;, &#39;gene2&#39;]]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.download_mer">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">download_mer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#merpy.download_mer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download latest version of MER from GitHub.</p>
+<dl class="field-list">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_mer</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="merpy.download_lexicons">
+<code class="sig-prename descclassname">merpy.</code><code class="sig-name descname">download_lexicons</code><span class="sig-paren">(</span><em class="sig-param">download_link='http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons201907.tgz'</em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.download_lexicons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download preprocessed lexicons</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link</strong> (<em>string</em>) – link with tar file containing preprocessed lexicons</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;Influenza, commonly known as &quot;the flu&quot;, is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;hp&quot;</span><span class="p">)</span>
+<span class="go">[[&#39;111&#39;, &#39;115&#39;, &#39;mild&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012825&#39;], [&#39;200&#39;, &#39;206&#39;, &#39;muscle&#39;, &#39;http://purl.obolibrary.org/obo/UBERON_0005090&#39;], [&#39;246&#39;, &#39;251&#39;, &#39;tired&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012378&#39;]]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral float-left" title="Dependencies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, A. Lamurias
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

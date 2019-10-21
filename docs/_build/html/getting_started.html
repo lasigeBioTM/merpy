@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Dependencies &mdash; merpy  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API" href="api.html" />
+    <link rel="prev" title="Welcome to merpy’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> merpy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Dependencies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#awk">awk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">merpy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Dependencies</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>MER is a Named-Entity Recognition tool which given any lexicon and any
+input text returns the list of terms recognized in the text, including
+their exact location (annotations).</p>
+<p>Given an ontology (owl file) MER is also able to link the entities to
+their classes.</p>
+<div class="section" id="dependencies">
+<h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="awk">
+<h2>awk<a class="headerlink" href="#awk" title="Permalink to this headline">¶</a></h2>
+<p>MER was developed and tested using the GNU awk (gawk) and grep. If you
+have another awk interpreter in your machine, there’s no assurance that
+the program will work.</p>
+<p>For example, to install GNU awk on Ubuntu:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gawk</span>
+</pre></div>
+</div>
+<p>Currently, merpy will not run unless gawk is available.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install merpy
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<p>Then you might want to update the MER scripts and download preprocessed
+data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_mer</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-usage">
+<h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;hp&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;Influenza, commonly known as &quot;the flu&quot;, is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entities</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;hp&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
+<span class="go">[[&#39;111&#39;, &#39;115&#39;, &#39;mild&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012825&#39;], [&#39;119&#39;, &#39;125&#39;, &#39;severe&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012828&#39;], [&#39;168&#39;, &#39;173&#39;, &#39;fever&#39;, &#39;http://purl.obolibrary.org/obo/HP_0001945&#39;], [&#39;214&#39;, &#39;222&#39;, &#39;headache&#39;, &#39;http://purl.obolibrary.org/obo/HP_0002315&#39;], [&#39;224&#39;, &#39;232&#39;, &#39;coughing&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012735&#39;], [&#39;246&#39;, &#39;251&#39;, &#39;tired&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012378&#39;], [&#39;175&#39;, &#39;185&#39;, &#39;runny nose&#39;, &#39;http://purl.obolibrary.org/obo/HP_0031417&#39;]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lexicons</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_lexicons</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">show_lexicons</span><span class="p">()</span>
+<span class="go">lexicons preloaded:</span>
+<span class="go">[&#39;lexicon&#39;, &#39;go&#39;, &#39;cell_line_and_cell_type&#39;, &#39;chebi_lite&#39;, &#39;chemical&#39;, &#39;hp&#39;, &#39;disease&#39;, &#39;wordnet_nouns&#39;, &#39;hpo&#39;, &#39;radlex&#39;, &#39;doid&#39;, &#39;protein&#39;, &#39;hpomultilang&#39;, &#39;tissue_and_organ&#39;, &#39;mirna&#39;, &#39;subcellular_structure&#39;]</span>
+
+<span class="go">lexicons loaded ready to use:</span>
+<span class="go">[&#39;lexicon&#39;, &#39;doid&#39;, &#39;hp&#39;]</span>
+
+<span class="go">lexicons with linked concepts:</span>
+<span class="go">[&#39;doid&#39;, &#39;hp&#39;, &#39;go&#39;, &#39;chebi_lite&#39;, &#39;lexicon&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">create_lexicon</span><span class="p">([</span><span class="s2">&quot;gene1&quot;</span><span class="p">,</span> <span class="s2">&quot;gene2&quot;</span><span class="p">,</span> <span class="s2">&quot;gene3&quot;</span><span class="p">],</span> <span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<span class="go">wrote genelist lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicon</span><span class="p">(</span><span class="s2">&quot;https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
+<span class="go">wrote chebi lexicon</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to merpy’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, A. Lamurias
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

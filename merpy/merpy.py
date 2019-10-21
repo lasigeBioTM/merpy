@@ -31,7 +31,6 @@ def process_lexicon(lexicon, ltype="txt"):
 
     Input can be a file with one entity per line or an OWL ontology
 
-
     :param lexicon: name of previously downloaded lexicon to be used
     :type lexicon: string
     :param ltype: lexicon type (txt, owl, or rdf)
@@ -184,14 +183,14 @@ def create_lexicon(entities, name):
     :param name: name of lexicon
     :type name: string
 
-
     :Example:
-    >>> import merpy
-    >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
-    wrote genelist lexicon
-    >>> merpy.process_lexicon("genelist")
-    >>> merpy.get_entities("gene1 and gene2", "genelist")
-    [['0', '5', 'gene1'], ['10', '15', 'gene2']]
+        >>> import merpy
+        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+        wrote genelist lexicon
+        >>> merpy.process_lexicon("genelist")
+        >>> merpy.get_entities("gene1 and gene2", "genelist")
+        [['0', '5', 'gene1'], ['10', '15', 'gene2']]
+
     """
     with open(mer_path + "/data/" + name + ".txt", "w", encoding="utf8") as f:
         f.write("\n".join(entities))
@@ -294,16 +293,17 @@ def show_lexicons():
     """Print lexicon list
 
     :Example:
-    >>> import merpy
-    >>> merpy.show_lexicons() # doctest: +ELLIPSIS
-    lexicons preloaded:
-    [...]
-    <BLANKLINE>
-    lexicons loaded ready to use:
-    [...]
-    <BLANKLINE>
-    lexicons with linked concepts:
-    [...]
+        >>> import merpy
+        >>> merpy.show_lexicons() # doctest: +ELLIPSIS
+        lexicons preloaded:
+        [...]
+        <BLANKLINE>
+        lexicons loaded ready to use:
+        [...]
+        <BLANKLINE>
+        lexicons with linked concepts:
+        [...]
+
     """
     lexicons = get_lexicons()
     print("lexicons preloaded:")
