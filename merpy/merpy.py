@@ -193,7 +193,7 @@ def create_lexicon(entities, name):
     >>> merpy.get_entities("gene1 and gene2", "genelist")
     [['0', '5', 'gene1'], ['10', '15', 'gene2']]
     """
-    with open(mer_path + "/data/" + name + ".txt", "w") as f:
+    with open(mer_path + "/data/" + name + ".txt", "w", encoding="utf8") as f:
         f.write("\n".join(entities))
     print("wrote {} lexicon".format(name))
 
@@ -219,13 +219,15 @@ def create_mappings(mapped_entities, name):
         >>> merpy.get_entities("gold and silver are metals", "metals")
         [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
     """
-    with open(mer_path + "/data/" + name + "_links.tsv", "w") as links_file:
+    with open(
+        mer_path + "/data/" + name + "_links.tsv", "w", encoding="utf8"
+    ) as links_file:
         for e in mapped_entities:
             if type(mapped_entities[e]) is list:
                 for mapping in mapped_entities[e]:
-                    links_file.write(e + "\t" + str(mapping) + "\n")
+                    links_file.write(e.lower() + "\t" + str(mapping) + "\n")
             else:
-                links_file.write(e + "\t" + str(mapped_entities[e]) + "\n")
+                links_file.write(e.lower() + "\t" + str(mapped_entities[e]) + "\n")
 
     print("wrote {} mappings".format(name))
 
