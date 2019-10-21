@@ -22,6 +22,7 @@ their classes.
 
    getting_started.rst
    api.rst
+   changelog.rst
 
 
 Reference

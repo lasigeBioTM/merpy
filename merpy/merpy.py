@@ -9,6 +9,7 @@ from subprocess import Popen, PIPE
 import pkg_resources as pkg
 import requests
 import tarfile
+import multiprocessing as mp
 
 mer_path = pkg.resource_filename("merpy", "MER/")
 
@@ -73,6 +74,35 @@ def process_lexicon(lexicon, ltype="txt"):
 
 def generate_lexicon(lexicon):
     process_lexicon(lexicon)
+
+
+def get_entities_mp(documents, lexicon, n_cores=4):
+    """Get entities for multiple documents using multiprocessing
+
+    :param documents: dictionary mapping one key to each document text
+    :type documents: dict
+    :param lexicon: Lexicon used to get the entities
+    :type lexicon: string
+    :param n_cores: number of cores
+    :type n_cores: int
+    :return: dictionary mapping doc IDs to entity lists
+    :rtype: dict
+
+
+    :Examples:
+        >>> import merpy
+        >>> merpy.download_lexicons()
+        >>> doc_text = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+        >>> docs = {i:doc_text for i in range(10)}
+        >>> entities = merpy.get_entities_mp(docs, "hp")
+        >>> print(len(entities))
+        10
+
+    """
+
+    p = mp.Pool(processes=n_cores)
+    data = p.starmap(get_entities, [(documents[d], lexicon) for d in documents])
+    return data
 
 
 def get_entities(text, lexicon):

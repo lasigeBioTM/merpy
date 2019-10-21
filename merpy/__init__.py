@@ -10,6 +10,7 @@ from .merpy import (
     download_mer,
     download_lexicons,
     mer_path,
+    get_entities_mp,
 )
 
 name = "merpy"
@@ -25,4 +26,5 @@ __all__ = [
     "download_mer",
     "download_lexicons",
     "mer_path",
+    "get_entities_mp",
 ]
