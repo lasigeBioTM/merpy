@@ -21,6 +21,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     package_data={"merpy": ["MER/*", "MER/data/*"]},
-    install_requires=["requests"],
+    install_requires=["requests", "p_tqdm"],
     extras_require={"dev": ["setuptools-changelog"]},
 )

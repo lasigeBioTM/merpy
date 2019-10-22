@@ -10,6 +10,7 @@ import pkg_resources as pkg
 import requests
 import tarfile
 import multiprocessing as mp
+from p_tqdm import p_map
 
 mer_path = pkg.resource_filename("merpy", "MER/")
 
@@ -100,8 +101,8 @@ def get_entities_mp(documents, lexicon, n_cores=4):
 
     """
 
-    p = mp.Pool(processes=n_cores)
-    data = p.starmap(get_entities, [(documents[d], lexicon) for d in documents])
+    data = p_map(get_entities, list(documents.values()), [lexicon] * len(documents))
+
     return data
 
 
