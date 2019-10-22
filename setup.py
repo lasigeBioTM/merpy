@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="merpy",
-    version="1.1.0",
+    version="1.1.1",
     description="use MER inside python",
     long_description=long_description,
     long_description_content_type="text/markdown",
