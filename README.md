@@ -17,6 +17,10 @@ More information about MER can be found in:
 [https://www.researchgate.net/publication/316545534_MER_a_Minimal_Named-Entity_Recognition_Tagger_and_Annotation_Server]
 
 
+## Documentation
+
+https://merpy.readthedocs.io/en/latest/
+
 ## Dependencies
 
 ### awk

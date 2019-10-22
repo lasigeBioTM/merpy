@@ -101,7 +101,12 @@ def get_entities_mp(documents, lexicon, n_cores=4):
 
     """
 
-    data = p_map(get_entities, list(documents.values()), [lexicon] * len(documents))
+    data = p_map(
+        get_entities,
+        list(documents.values()),
+        [lexicon] * len(documents),
+        n_cpus=n_cores,
+    )
 
     return data
 
