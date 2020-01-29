@@ -69,7 +69,7 @@ def process_lexicon(lexicon, ltype="txt"):
             universal_newlines=True,
         )
     stdout, stderr = session.communicate()
-    # print(stdout, stderr, file=sys.stderr)
+    print(stdout, stderr, file=sys.stderr)
     os.chdir(cwd)
 
 
@@ -267,7 +267,7 @@ def create_mappings(mapped_entities, name):
     print("wrote {} mappings".format(name))
 
 
-def download_lexicon(url, name, format="txt"):
+def download_lexicon(url, name, ltype="txt"):
     """Download lexicon from external resource
 
     :param url: URL to download lexicon
@@ -278,22 +278,26 @@ def download_lexicon(url, name, format="txt"):
 
     :Example:
         >>> import merpy
-        >>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi")
-        wrote chebi lexicon
-        >>> merpy.process_lexicon("chebi")
-        >>> merpy.get_entities("caffeine", "chebi")
+        >>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi_txt", 'txt')
+        wrote chebi_txt lexicon
+        >>> merpy.process_lexicon("chebi_txt", "txt")
+        >>> merpy.get_entities("caffeine", "chebi_txt")
         [['0', '8', 'caffeine']]
-        >>> merpy.download_lexicon("ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi_lite.owl", 'chebi_lite')
+        >>> merpy.download_lexicon("ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi_lite.owl", 'chebi_lite', 'owl')
         wrote chebi_lite lexicon
+        >>> merpy.process_lexicon("chebi_lite", "owl")
+        >>> merpy.get_entities("caffeine", "chebi_lite")
+        [['0', '8', 'caffeine', 'http://purl.obolibrary.org/obo/CHEBI_27732']]
+
     """
     if url.startswith("http"):
         r = requests.get(url)
-        with open(mer_path + "/data/" + name + "." + format, "wb") as f:
+        with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
             f.write(r.content)
     elif url.startswith("ftp"):
         r = urllib.request.urlopen(url)
 
-        with open(mer_path + "/data/" + name + "." + format, 'wb') as f:
+        with open(mer_path + "/data/" + name + "." + ltype, 'wb') as f:
             shutil.copyfileobj(r, f)
 
     print("wrote {} lexicon".format(name))
