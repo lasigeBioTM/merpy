@@ -283,10 +283,19 @@ def download_lexicon(url, name, format="txt"):
         >>> merpy.process_lexicon("chebi")
         >>> merpy.get_entities("caffeine", "chebi")
         [['0', '8', 'caffeine']]
+        >>> merpy.download_lexicon("ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi_lite.owl", 'chebi_lite')
+        wrote chebi_lite lexicon
     """
-    r = requests.get(url)
-    with open(mer_path + "/data/" + name + "." + format, "wb") as f:
-        f.write(r.content)
+    if url.startswith("http"):
+        r = requests.get(url)
+        with open(mer_path + "/data/" + name + "." + format, "wb") as f:
+            f.write(r.content)
+    elif url.startswith("ftp"):
+        r = urllib.request.urlopen(url)
+
+        with open(mer_path + "/data/" + name + "." + format, 'wb') as f:
+            shutil.copyfileobj(r, f)
+
     print("wrote {} lexicon".format(name))
 
 
