@@ -10,7 +10,7 @@ import pkg_resources as pkg
 import requests
 import tarfile
 import multiprocessing as mp
-from p_tqdm import p_map
+
 
 mer_path = pkg.resource_filename("merpy", "MER/")
 
@@ -100,13 +100,10 @@ def get_entities_mp(documents, lexicon, n_cores=4):
         10
 
     """
-
-    data = p_map(
-        get_entities,
-        list(documents.values()),
-        [lexicon] * len(documents),
-        n_cpus=n_cores,
-    )
+    with mp.Pool(processes=n_cores) as pool:
+        data = pool.starmap(
+            get_entities, zip(list(documents.values()), [lexicon] * len(documents))
+        )
 
     return data
 
@@ -297,7 +294,7 @@ def download_lexicon(url, name, ltype="txt"):
     elif url.startswith("ftp"):
         r = urllib.request.urlopen(url)
 
-        with open(mer_path + "/data/" + name + "." + ltype, 'wb') as f:
+        with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
             shutil.copyfileobj(r, f)
 
     print("wrote {} lexicon".format(name))
