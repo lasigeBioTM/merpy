@@ -230,7 +230,7 @@ def create_lexicon(entities, name):
     print("wrote {} lexicon".format(name))
 
 
-def create_lexicon_from_file(filename, name):
+def create_lexicon_from_file(filename, name, links_file=None):
     """Create a lexicon based on an existing file
     The file is simply copied to the datadir
 
@@ -238,6 +238,8 @@ def create_lexicon_from_file(filename, name):
     :type entities: string
     :param name: name of lexicon
     :type name: string
+    :param links_file: path to links file or None
+    :type links_file: string
 
     :Example:
         >>> import merpy
@@ -252,6 +254,8 @@ def create_lexicon_from_file(filename, name):
 
     check_gawk()
     shutil.copyfile(filename, mer_path + "/data/" + name + ".txt")
+    if links_file is not None:
+        shutil.copyfile(links_file, mer_path + "/data/" + name + "_links.tsv")
     print("copied {} lexicon".format(name))
 
 
