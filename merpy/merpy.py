@@ -255,6 +255,31 @@ def create_lexicon_from_file(filename, name):
     print("copied {} lexicon".format(name))
 
 
+def delete_lexicon(name, delete_lexicon=False):
+    """ Delete preprocessed files of a lexicon
+
+    :param name: name of lexicon
+    :type name: string
+    :param delete_lexicon: delete lexicon txt or owl file too
+    :type name: Boolean
+
+    :Example:
+        >>> import merpy
+        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+        wrote genelist lexicon
+        >>> merpy.delete_lexicon("genelist")
+        deleted genelist lexicon
+    """
+
+    for filename in glob.glob(mer_path + "/data/" + name + "_*"):
+        os.remove(filename)
+
+    if delete_lexicon:
+        for filename in glob.glob(mer_path + "/data/" + name + ".*"):
+            os.remove(filename)
+    print("deleted {} lexicon".format(name))
+
+
 def create_mappings(mapped_entities, name):
     """Create links file to entity linking/mapping. 
 
