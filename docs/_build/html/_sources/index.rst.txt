@@ -27,10 +27,14 @@ their classes.
 
 Reference
 ---------
-More information about MER can be found in: - MER: a Shell Script and
+More information about MER can be found in: 
+
+- MER: a Shell Script and
 Annotation Server for Minimal Named Entity Recognition and Linking, F.
 Couto and A. Lamurias, Journal of Cheminformatics, 10:58, 2018
-[https://doi.org/10.1186/s13321-018-0312-9] - MER: a Minimal
+[https://doi.org/10.1186/s13321-018-0312-9]
+
+- MER: a Minimal
 Named-Entity Recognition Tagger and Annotation Server, F. Couto, L.
 Campos, and A. Lamurias, in BioCreative V.5 Challenge Evaluation, 2017
 [https://www.researchgate.net/publication/316545534\_MER\_a\_Minimal\_Named-Entity\_Recognition\_Tagger\_and\_Annotation\_Server]
