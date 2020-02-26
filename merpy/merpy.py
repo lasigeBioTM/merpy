@@ -230,6 +230,31 @@ def create_lexicon(entities, name):
     print("wrote {} lexicon".format(name))
 
 
+def create_lexicon_from_file(filename, name):
+    """Create a lexicon based on an existing file
+    The file is simply copied to the datadir
+
+    :param filename: file with list of entities
+    :type entities: string
+    :param name: name of lexicon
+    :type name: string
+
+    :Example:
+        >>> import merpy
+        >>> with open("genelist", 'w') as f:
+        ...     f.write("\\n".join(["gene1", "gene2", "gene3"])) #doctest: +SKIP
+        >>> merpy.create_lexicon_from_file("genelist", "genelist")
+        copied genelist lexicon
+        >>> merpy.process_lexicon("genelist")
+        >>> merpy.get_entities("gene1 and gene2", "genelist")
+        [['0', '5', 'gene1'], ['10', '15', 'gene2']]
+    """
+
+    check_gawk()
+    shutil.copyfile(filename, mer_path + "/data/" + name + ".txt")
+    print("copied {} lexicon".format(name))
+
+
 def create_mappings(mapped_entities, name):
     """Create links file to entity linking/mapping. 
 
