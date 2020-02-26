@@ -11,6 +11,8 @@ from .merpy import (
     download_lexicons,
     mer_path,
     get_entities_mp,
+    create_lexicon_from_file,
+    delete_lexicon,
 )
 
 name = "merpy"
@@ -27,4 +29,6 @@ __all__ = [
     "download_lexicons",
     "mer_path",
     "get_entities_mp",
+    "create_lexicon_from_file",
+    "delete_lexicon",
 ]

@@ -1,3 +1,11 @@
+1.2.0 (2020-02-26)
+==================
+
+New Features
+------------
+- Ability to create lexicons from file
+- Ability to delete lexicons (preprocessed file and main file)
+
 0.2.2 (2019-06-27)
 =================
 
