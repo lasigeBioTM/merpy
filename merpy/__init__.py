@@ -13,6 +13,7 @@ from .merpy import (
     get_entities_mp,
     create_lexicon_from_file,
     delete_lexicon,
+    merge_processed_lexicons,
 )
 
 name = "merpy"
@@ -31,4 +32,5 @@ __all__ = [
     "get_entities_mp",
     "create_lexicon_from_file",
     "delete_lexicon",
+    "merge_processed_lexicons",
 ]

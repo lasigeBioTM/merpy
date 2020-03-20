@@ -28,6 +28,56 @@ def check_gawk():
         sys.exit()
 
 
+def merge_processed_lexicons(lexicon_list, new_name):
+    """Merge various processed lexicons into one
+    
+    :param lexicon_list: list of lexicon names to be merged
+    :type lexicon: list
+    :param new_name: name of new lexicon
+    :type new_name: string
+
+    :Example:
+    >>> import merpy
+    >>> merpy.download_lexicons()
+    >>> merpy.merge_processed_lexicons(["chebi_lite", "hp", "go"], "chebihpgo")
+    >>> merpy.get_entities("autism caffeine gene expression", "chebihpgo")
+    [['0', '6', 'autism', 'http://purl.obolibrary.org/obo/HP_0000717'], \
+['7', '15', 'caffeine', 'http://purl.obolibrary.org/obo/CHEBI_27732'], \
+['16', '20', 'gene', 'http://purl.obolibrary.org/obo/SO_0000704'], \
+['16', '31', 'gene expression', 'http://purl.obolibrary.org/obo/GO_0010467']]
+    """
+    check_gawk()
+    # cwd = os.getcwd()
+    # os.chdir(mer_path + "/data/")
+    # merge by file type
+    lexicon_files = []
+    for l in lexicon_list:
+        lexicon_files += glob.glob(mer_path + "/data/" + l + "_*.txt")
+        lexicon_files += glob.glob(mer_path + "/data/" + l + ".txt")
+        lexicon_files += glob.glob(mer_path + "/data/" + l + "_links.tsv")
+
+    with open(mer_path + "/data/" + new_name + ".txt", "w") as outfile:
+        for fname in lexicon_files:
+            if fname.endswith(".txt") and "_word" not in fname:
+                with open(fname) as infile:
+                    outfile.write(infile.read())
+
+    with open(mer_path + "/data/" + new_name + "_links.tsv", "w") as outfile:
+        for fname in lexicon_files:
+            if fname.endswith("_links.tsv"):
+                with open(fname) as infile:
+                    outfile.write(infile.read())
+
+    for ftype in ["word1", "word2", "words", "words2"]:
+        with open(
+            mer_path + "/data/" + new_name + "_{}.txt".format(ftype), "w"
+        ) as outfile:
+            for fname in lexicon_files:
+                if fname.endswith("_{}.txt".format(ftype)):
+                    with open(fname) as infile:
+                        outfile.write(infile.read())
+
+
 def process_lexicon(lexicon, ltype="txt"):
     """Preprocess (/generate/load) lexicon, generating index files
 

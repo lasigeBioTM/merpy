@@ -1,3 +1,10 @@
+1.3.0 (2020-03-20)
+==================
+
+New Features
+------------
+- Ability to create merged processed lexicons
+
 1.2.0 (2020-02-26)
 ==================
 
