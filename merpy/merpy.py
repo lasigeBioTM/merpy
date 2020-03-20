@@ -150,12 +150,12 @@ def get_entities_mp(documents, lexicon, n_cores=4):
         10
 
     """
+    docs = [documents[d] for d in range(len(documents))]
     with mp.Pool(processes=n_cores) as pool:
-        data = pool.starmap(
-            get_entities, zip(list(documents.values()), [lexicon] * len(documents))
-        )
+        data = pool.starmap(get_entities, zip(docs, [lexicon] * len(documents)))
 
-    return data
+    output = {i: e for i, e in enumerate(data)}
+    return output
 
 
 def get_entities(text, lexicon):
