@@ -4,6 +4,7 @@ import stat
 import glob
 import zipfile
 import shutil
+import re
 import urllib.request
 from subprocess import Popen, PIPE
 import pkg_resources as pkg
@@ -26,6 +27,60 @@ def check_gawk():
     if gawk_result is None:
         print("please install gawk before using merpy")
         sys.exit()
+
+
+def add_entity(entity_text, lexicon, uri=None):
+    pass
+
+
+def delete_entity(entity_text, lexicon):
+    """ delete entity from lexicon
+    if one word delete from word1, if 2 words delete from word2, if more delete from words.txt
+    
+    :param entity_text: label of the entity to delete
+    :type entity_text: string
+    :param lexicon: lexicon where the entity should be deleted from
+    :type lexicon: string
+
+    :Example:
+    >>> import merpy
+    >>> merpy.download_lexicon("https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl", "metals", "owl")
+    wrote metals lexicon
+    >>> merpy.process_lexicon("metals", "owl")
+    >>> merpy.get_entities("gold silver metal", "metals")
+    [['0', '4', 'gold', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold'], \
+['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver'], \
+['12', '17', 'metal', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#metal']]
+    >>> merpy.delete_entity("metal", "metals")
+    >>> merpy.get_entities("gold silver metal", "metals")
+    [['0', '4', 'gold', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold'], \
+['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver']]
+    """
+    words = entity_text.split()
+    entity_text = re.sub(r"[^\s\d\w]", r".", entity_text)
+    basepath = mer_path + "/data/" + lexicon
+    if len(words) == 1:
+        file = basepath + "_word1.txt"
+    elif len(words) == 2:
+        file = basepath + "_word2.txt"
+    else:
+        file = basepath + "_words.txt"
+    with open(file, "r+") as f:
+        new_f = f.readlines()
+        f.seek(0)
+        for line in new_f:
+            if line.strip() != entity_text:
+                f.write(line)
+        f.truncate()
+
+    if os.path.exists(basepath + "_links.tsv"):
+        with open(basepath + "_links.tsv", "r+") as f:
+            new_f = f.readlines()
+            f.seek(0)
+            for line in new_f:
+                if line.split("\t")[0] != entity_text:
+                    f.write(line)
+            f.truncate()
 
 
 def merge_processed_lexicons(lexicon_list, new_name):
