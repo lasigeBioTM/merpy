@@ -15,6 +15,8 @@ from .merpy import (
     delete_lexicon,
     merge_processed_lexicons,
     delete_entity,
+    delete_entity_by_uri,
+    delete_obsolete,
 )
 
 name = "merpy"
@@ -35,4 +37,6 @@ __all__ = [
     "delete_lexicon",
     "merge_processed_lexicons",
     "delete_entity",
+    "delete_entity_by_uri",
+    "delete_obsolete",
 ]

@@ -1,3 +1,11 @@
+1.5.0 (2020-03-24)
+==================
+
+New Features
+------------
+- Delete entity by URI
+- Delete obsolete terms
+
 1.4.0 (2020-03-24)
 ==================
 

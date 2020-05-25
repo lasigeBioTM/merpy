@@ -29,6 +29,69 @@ def check_gawk():
         sys.exit()
 
 
+def delete_obsolete(lexicon):
+    """Remove obsolete concepts
+    
+    :param lexicon: lexicon to remove obsolete concepts
+    :type lexicon: string
+
+
+    :Example:
+    >>> import merpy
+    >>> mappings = {"obsolete gold": 1, "silver": 2, "gold": 1}
+    >>> create_lexicon(mappings.keys(), "metals")
+    wrote metals lexicon
+    >>> create_mappings(mappings, "metals")
+    wrote metals mappings
+    >>> merpy.process_lexicon("metals")
+    >>> merpy.get_entities("gold and silver are metals", "metals")
+    [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
+    >>> merpy.delete_obsolete("metals")
+    >>> merpy.get_entities("gold and silver are metals", "metals")
+    [['9', '15', 'silver', '2']]
+
+    """
+    uris = []
+    for ending in [
+        "_word1.txt",
+        "_word2.txt",
+        "_words2.txt",
+        "_words.txt",
+        "_links.tsv",
+    ]:
+        file = mer_path + "/data/" + lexicon + ending
+        with open(file, "r+") as f:
+            new_f = f.readlines()
+            f.seek(0)
+            for line in new_f:
+                if not line.startswith("obsolete"):
+                    f.write(line)
+                elif file.endswith("_links.tsv"):
+                    # get URI
+                    uris.append(line.rstrip().split("\t")[1])
+            f.truncate()
+
+    for uri in uris:
+        delete_entity_by_uri(uri, lexicon)
+
+
+def delete_entity_by_uri(entity_uri, lexicon):
+    entity_labels = []
+    # remove from links and save entity labels
+    with open(mer_path + "/data/" + lexicon + "_links.tsv", "r+") as f:
+        new_f = f.readlines()
+        f.seek(0)
+        for line in new_f:
+            if line.rstrip().split("\t")[1] != entity_uri:
+                f.write(line)
+            else:
+                entity_labels.append(line.split("\t")[0])
+        f.truncate()
+    # delete entity labels
+    for e in entity_labels:
+        delete_entity(e, lexicon)
+
+
 def add_entity(entity_text, lexicon, uri=None):
     pass
 
@@ -69,7 +132,7 @@ def delete_entity(entity_text, lexicon):
         new_f = f.readlines()
         f.seek(0)
         for line in new_f:
-            if line.strip() != entity_text:
+            if line.rstrip() != entity_text:
                 f.write(line)
         f.truncate()
 
@@ -257,8 +320,8 @@ def get_entities(text, lexicon):
         # TODO: throw exception
         print(stderr)
     os.chdir(cwd)
-    lines = stdout.strip().split("\n")
-    return [l.strip().split("\t") for l in lines]
+    lines = stdout.rstrip().split("\n")
+    return [l.rstrip().split("\t") for l in lines]
 
 
 def download_mer():
