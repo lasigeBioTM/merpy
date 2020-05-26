@@ -76,20 +76,25 @@ def delete_obsolete(lexicon):
 
 
 def delete_entity_by_uri(entity_uri, lexicon):
+    """ delete entity or list of entities
+
+    """
     entity_labels = []
+    if isinstance(entity_uri, str):
+        entity_uri = [entity_uri] 
     # remove from links and save entity labels
     with open(mer_path + "/data/" + lexicon + "_links.tsv", "r+") as f:
         new_f = f.readlines()
         f.seek(0)
         for line in new_f:
-            if line.rstrip().split("\t")[1] != entity_uri:
+            if line.rstrip().split("\t")[1] not in entity_uri:
                 f.write(line)
             else:
                 entity_labels.append(line.split("\t")[0])
         f.truncate()
     # delete entity labels
-    for e in entity_labels:
-        delete_entity(e, lexicon)
+    #for e in entity_labels:
+    delete_entity(entity_labels, lexicon)
 
 
 def add_entity(entity_text, lexicon, uri=None):
@@ -119,29 +124,39 @@ def delete_entity(entity_text, lexicon):
     [['0', '4', 'gold', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold'], \
 ['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver']]
     """
-    words = entity_text.split()
-    entity_text = re.sub(r"[^\s\d\w]", r".", entity_text)
     basepath = mer_path + "/data/" + lexicon
-    if len(words) == 1:
-        file = basepath + "_word1.txt"
-    elif len(words) == 2:
-        file = basepath + "_word2.txt"
-    else:
-        file = basepath + "_words.txt"
-    with open(file, "r+") as f:
-        new_f = f.readlines()
-        f.seek(0)
-        for line in new_f:
-            if line.rstrip() != entity_text:
-                f.write(line)
-        f.truncate()
+    if isinstance(entity_text, str):
+        entity_text = [entity_text]
+    entities_per_file = {"{}_word1.txt".format(basepath):[],
+                         "{}_word2.txt".format(basepath):[],
+                         "{}_words.txt".format(basepath):[]}
+    for entity in entity_text:
+        words = entity.split()
+        entity = re.sub(r"[^\s\d\w]", r".", entity)
+        
+        if len(words) == 1:
+            entities_per_file["{}_word1.txt".format(basepath)].append(entity)
+        elif len(words) == 2:
+            entities_per_file["{}_word2.txt".format(basepath)].append(entity)
+        else:
+            entities_per_file["{}_words.txt".format(basepath)].append(entity)
 
+    for lexicon_file in entities_per_file:
+        with open(lexicon_file, "r+") as f:
+            new_f = f.readlines()
+            f.seek(0)
+            for line in new_f:
+                if line.rstrip() not in entities_per_file[lexicon_file]:
+                    f.write(line)
+            f.truncate()
+
+    all_entities =  [y for x in entities_per_file.values() for y in x]
     if os.path.exists(basepath + "_links.tsv"):
         with open(basepath + "_links.tsv", "r+") as f:
             new_f = f.readlines()
             f.seek(0)
             for line in new_f:
-                if line.split("\t")[0] != entity_text:
+                if line.split("\t")[0] not in all_entities:
                     f.write(line)
             f.truncate()
 
