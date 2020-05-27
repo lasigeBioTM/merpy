@@ -1,3 +1,18 @@
+1.7.1 (2020-05-27)
+==================
+
+New Features
+------------
+- make sure _ are not used as lexicon names
+- Make rename_lexicon usable
+
+1.7.0 (2020-05-26)
+==================
+
+New Features
+------------
+- Rename lexicons
+
 1.6.0 (2020-05-26)
 ==================
 

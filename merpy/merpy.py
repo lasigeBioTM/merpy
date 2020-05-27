@@ -71,13 +71,19 @@ def delete_obsolete(lexicon):
                     uris.append(line.rstrip().split("\t")[1])
             f.truncate()
 
-    for uri in uris:
-        delete_entity_by_uri(uri, lexicon)
+
+    delete_entity_by_uri(uris, lexicon)
 
 
 def delete_entity_by_uri(entity_uri, lexicon):
-    """ delete entity or list of entities
-
+    """ Delete entity or list of entities
+    
+    :param entity_text: label or list of labels of the entities to delete
+    :type entity_text: string or list
+    :param lexicon: lexicon where the entities should be deleted from
+    :type lexicon: string
+    
+    See delete_obsolete for an example
     """
     entity_labels = []
     if isinstance(entity_uri, str):
@@ -105,8 +111,8 @@ def delete_entity(entity_text, lexicon):
     """ delete entity from lexicon
     if one word delete from word1, if 2 words delete from word2, if more delete from words.txt
     
-    :param entity_text: label of the entity to delete
-    :type entity_text: string
+    :param entity_text: label or list of labels of the entities to delete
+    :type entity_text: string or list
     :param lexicon: lexicon where the entity should be deleted from
     :type lexicon: string
 
@@ -173,6 +179,7 @@ def merge_processed_lexicons(lexicon_list, new_name):
     >>> import merpy
     >>> merpy.download_lexicons()
     >>> merpy.merge_processed_lexicons(["chebi_lite", "hp", "go"], "chebihpgo")
+    merged chebi_lite hp go into chebihpgo
     >>> merpy.get_entities("autism caffeine gene expression", "chebihpgo")
     [['0', '6', 'autism', 'http://purl.obolibrary.org/obo/HP_0000717'], \
 ['7', '15', 'caffeine', 'http://purl.obolibrary.org/obo/CHEBI_27732'], \
@@ -183,6 +190,9 @@ def merge_processed_lexicons(lexicon_list, new_name):
     # cwd = os.getcwd()
     # os.chdir(mer_path + "/data/")
     # merge by file type
+    if "_" in new_name:
+        new_name = new_name.replace("_", "")
+        print("renamed to ", new_name)
     lexicon_files = []
     for l in lexicon_list:
         lexicon_files += glob.glob(mer_path + "/data/" + l + "_*.txt")
@@ -209,6 +219,7 @@ def merge_processed_lexicons(lexicon_list, new_name):
                 if fname.endswith("_{}.txt".format(ftype)):
                     with open(fname) as infile:
                         outfile.write(infile.read())
+    print("merged " + " ".join(lexicon_list) + " into " + new_name)
 
 
 def process_lexicon(lexicon, ltype="txt"):
@@ -408,6 +419,9 @@ def create_lexicon(entities, name):
         [['0', '5', 'gene1'], ['10', '15', 'gene2']]
 
     """
+    if "_" in name:
+        name = name.replace("_", "")
+        print("renamed to ", name)
     with open(mer_path + "/data/" + name + ".txt", "w", encoding="utf8") as f:
         f.write("\n".join(entities))
     print("wrote {} lexicon".format(name))
@@ -436,6 +450,9 @@ def create_lexicon_from_file(filename, name, links_file=None):
     """
 
     check_gawk()
+    if "_" in name:
+        name = name.replace("_", "")
+        print("renamed to ", name)
     shutil.copyfile(filename, mer_path + "/data/" + name + ".txt")
     if links_file is not None:
         shutil.copyfile(links_file, mer_path + "/data/" + name + "_links.tsv")
@@ -465,6 +482,40 @@ def delete_lexicon(name, delete_lexicon=False):
         for filename in glob.glob(mer_path + "/data/" + name + ".*"):
             os.remove(filename)
     print("deleted {} lexicon".format(name))
+
+
+def rename_lexicon(name, new_name):
+    """ Rename preprocessed files of a lexicon
+
+    :param name: old name of lexicon
+    :type name: string
+    :param new_name: new name of lexicon
+    :type name: string
+
+    :Example:
+        >>> import merpy
+        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+        wrote genelist lexicon
+        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelists")
+        wrote genelists lexicon
+        >>> merpy.rename_lexicon("genelist", "genes")
+        renamed genelist lexicon to genes
+        >>> "genelists" in merpy.get_lexicons()[0]
+        True
+        >>> "genelist" not in merpy.get_lexicons()[0]
+        True
+        >>> "genes" in merpy.get_lexicons()[0]
+        True
+    """
+    if "_" in new_name:
+        new_name = name.replace("_", "")
+        print("renamed to ", new_name)
+
+    for filename in glob.glob(mer_path + "/data/" + name + "_*"):
+        os.rename(filename, filename.replace(name, new_name))
+    for filename in glob.glob(mer_path + "/data/" + name + ".*"):
+        os.rename(filename, filename.replace(name, new_name))
+    print("renamed {} lexicon to {}".format(name, new_name))
 
 
 def create_mappings(mapped_entities, name):
