@@ -29,37 +29,50 @@ min_entity_size_alpha=3
 max_entity_size_digit=5
 # set -x #debug
 
-filename=${1%.*}
+FILE=$1
 
-if [[ $1 = *".owl" ]] || [[ $1 == 'radlex.rdf' ]]; then
-
-    if [[ $1 = *".owl" ]]; then
-	labels=$(grep -F -e 'owl:Class rdf:about' -e 'rdfs:label' -e 'oboInOwl:hasExactSynonym' -e 'oboInOwl:hasRelatedSynonym'  $1  | \
-		     tr '\n' ' ' | \
-		     sed -e 's/<owl:Class/\n<owl:Class/g'  | \
-		     grep '^<owl:Class' | \
-		     sed 's/rdf:about="\([^"]*\)"/>\1</' | \
-		     awk -F'[<>]' '{for(i=NF-2;i>4;i=i-4)printf "%s\t%s \n",$i,$3;}')
-    else #radlex.rdf
-	labels=$(grep -F -e 'rdf:about' -e 'Preferred_name xml:lang="en"'  $1  | \
-		     tr '\n' ' ' | \
-		     sed -e 's/rdf:about/\n<rdf:about/g'  | \
-		     grep '^<rdf:about' | \
-		     sed 's/rdf:about="\([^"]*\)"/>\1</' | \
-		     awk -F'[<>]' '{for(i=NF-3;i>4;i=i-4)printf "%s\t%s \n",$i,$3;}')
-    fi
-    
-    echo "$labels" | sed -r 's/([^\t]+)/\L\1/' | sort -k1,1 -t$'\t' | uniq > $filename\_links.tsv
-    
-    cut -f1 $filename\_links.tsv > $filename.txt 
-
-elif [[ $1 == 'wordnet-hyponym.rdf' ]]; then
-    grep -F '<rdf:Description rdf:about' $1 | \
-	sed 's/^.*synset-//' | \
-	sed 's/-[^-]*-[0-9]*".*$//' | \
-	tr '_' ' '  | \
-	tr '[:upper:]' '[:lower:]' > $filename.txt 
+if [[ ! -f "$FILE" ]]; then
+    echo $'\n'"ERROR: file $FILE not exists."$'\n'
+    exit 1
 fi
+
+filename=${FILE%.*}
+
+	if [[ $FILE == 'wordnet-hyponym.rdf' ]]; then
+	    grep -F '<rdf:Description rdf:about' $FILE | \
+			sed 's/^.*synset-//' | \
+			sed 's/-[^-]*-[0-9]*".*$//' | \
+			tr '_' ' '  | \
+			tr '[:upper:]' '[:lower:]' > $filename.txt 
+
+	elif [[ $FILE =~ \.(owl|rdf|xml)$ ]]; then # with entity linking
+
+	    if [[ $FILE = *".owl" ]]; then
+			labels=$(grep -F -e 'owl:Class rdf:about' -e 'rdfs:label' -e 'oboInOwl:hasExactSynonym' -e 'oboInOwl:hasRelatedSynonym'  $FILE  | \
+						 tr '\n' ' ' | \
+						 sed -e 's/<owl:Class/\n<owl:Class/g'  | \
+						 grep '^<owl:Class' | \
+						 sed 's/rdf:about="\([^"]*\)"/>\1</' | \
+						 awk -F'[<>]' '{for(i=NF-2;i>4;i=i-4)printf "%s\t%s \n",$i,$3;}')
+	    elif [[ $FILE = *".rdf" ]]; then # radlex.rdf
+			labels=$(grep -B 1 -F -e '<Literal xml:lang="en">' radlex.rdf | \
+						 tr '\n' ' ' | \
+						 sed -e 's/<AbbreviatedIRI>:/\n<AbbreviatedIRI>/g' | \
+						 grep -v -E '<Literal xml:lang="en">RID[0-9]+<' | \
+						 awk -F'[<>]' '{printf "%s\thttp://radlex.org/RID/%s \n",$7,$3;}')
+	    elif [[ $FILE = *".xml" ]]; then # bireme_decs_<language>2020.xml
+		language=${filename:12:3}
+		if [[ $language = 'eng' ]]; then language='T'; fi
+		labels=$(grep -E -e '^  <DescriptorUI>' -e '<!\[CDATA\[' -e "<TermUI>$language" $FILE  | \
+			     sed -E 's/<DescriptorUI>/@/' | tr '\n' ' ' | tr '@' '\n' | \
+			     sed -e "s/<TermUI>$language[0-9]*<\/TermUI> *<!\[CDATA\[/\n@/g; s/^\(.*\)<\/DescriptorUI>/#\1\n/g;" | \
+			     grep -E '@|#' | sed  's/\]\]>.*$//' | tr -d '\n' | tr '#@' '\n\t' | \
+			     awk -F'\t' '{for(i=2;i<=NF;i=i+1)printf "%s\thttps://decs.bvsalud.org/ths/?filter=ths_regid&q=%s \n",$i,$FILE;}')
+	    fi
+	    echo "$labels" | sed -r 's/([^\t]+)/\L\1/' | sort -k1,1 -t$'\t' | uniq > $filename\_links.tsv
+	    
+	    cut -f1 $filename\_links.tsv > $filename.txt 
+	fi
     
 egrep "[[:alpha:]]{$min_entity_size_alpha,}" $filename.txt >  $filename.aux1
 egrep -v "[[:digit:]]{$max_entity_size_digit,}" $filename.aux1 >  $filename.aux2
