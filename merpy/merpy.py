@@ -375,7 +375,7 @@ def download_mer():
 
 
 def download_lexicons(
-    download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons201907.tgz"
+    download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons202103.tgz"
 ):
     """Download preprocessed lexicons
 
@@ -393,13 +393,13 @@ def download_lexicons(
 
     """
 
-    urllib.request.urlretrieve(download_link, "lexicons201907.tgz")[0]
-    tf = tarfile.open("lexicons201907.tgz", mode="r")
+    urllib.request.urlretrieve(download_link, "lexicons202103.tgz")[0]
+    tf = tarfile.open("lexicons202103.tgz", mode="r")
     tf.extractall(mer_path + "data")
     tf.close()
 
     # clean up
-    os.remove("lexicons201907.tgz")
+    os.remove("lexicons202103.tgz")
 
 
 def create_lexicon(entities, name):
