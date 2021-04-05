@@ -17,6 +17,11 @@ More information about MER can be found in:
 [https://www.researchgate.net/publication/316545534_MER_a_Minimal_Named-Entity_Recognition_Tagger_and_Annotation_Server]
 
 
+** New **
+** **NEW** **
+- Package lexicons202103.tgz is available
+- Multilingual lexicons using DeCS
+
 ## Documentation
 
 https://merpy.readthedocs.io/en/latest/
@@ -56,20 +61,23 @@ Then you might want to update the MER scripts and download preprocessed data:
 >>> import merpy
 >>> merpy.download_lexicons()
 >>> merpy.process_lexicon("hp")
->>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+>>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired ... Acetylcysteine for reducing the oxygen transport and caffeine to stimulate ... fever, tachypnea ... fiebre, taquipnea ... febre, taquipneia' 
 >>> entities = merpy.get_entities(document, "hp") # get_entities_mp uses multiprocessing (set n_cores param)
 >>> print(entities)
-[['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], ['119', '125', 'severe', 'http://purl.obolibrary.org/obo/HP_0012828'], ['168', '173', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['214', '222', 'headache', 'http://purl.obolibrary.org/obo/HP_0002315'], ['224', '232', 'coughing', 'http://purl.obolibrary.org/obo/HP_0012735'], ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378'], ['175', '185', 'runny nose', 'http://purl.obolibrary.org/obo/HP_0031417']]
+[['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], ['119', '125', 'severe', 'http://purl.obolibrary.org/obo/HP_0012828'], ['168', '173', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['181', '185', 'nose', 'http://purl.obolibrary.org/obo/UBERON_0000004'], ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], ['214', '222', 'headache', 'http://purl.obolibrary.org/obo/HP_0002315'], ['224', '232', 'coughing', 'http://purl.obolibrary.org/obo/HP_0012735'], ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378'], ['288', '294', 'oxygen', 'http://purl.obolibrary.org/obo/CHEBI_15379'], ['295', '304', 'transport', 'http://purl.obolibrary.org/obo/GO_0006810'], ['335', '340', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['342', '351', 'tachypnea', 'http://purl.obolibrary.org/obo/HP_0002789'], ['175', '185', 'runny nose', 'http://purl.obolibrary.org/obo/HP_0031417'], ['187', '198', 'sore throat', 'http://purl.obolibrary.org/obo/HP_0033050']]
+>>> entities = merpy.get_entities(document, "bireme_decs_por2020") 
+>>> print(entities)
+[['378', '383', 'febre', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D005334'], ['385', '395', 'taquipneia', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D059246']]
 >>> lexicons = merpy.get_lexicons()
 >>> merpy.show_lexicons()
 lexicons preloaded:
-['lexicon', 'go', 'cell_line_and_cell_type', 'chebi_lite', 'chemical', 'hp', 'disease', 'wordnet_nouns', 'hpo', 'radlex', 'doid', 'protein', 'hpomultilang', 'tissue_and_organ', 'mirna', 'subcellular_structure']
+['lexicon', 'bireme_decs_por2020', 'bireme_decs_spa2020', 'wordnet-hyponym', 'radlex', 'doid', 'bireme_decs_eng2020', 'go', 'hp', 'chebi_lite']
 
 lexicons loaded ready to use:
-['lexicon', 'doid', 'hp']
+['bireme_decs_por2020', 'chebi_lite', 'hp', 'bireme_decs_spa2020', 'wordnet-hyponym', 'doid', 'lexicon', 'radlex', 'go', 'bireme_decs_eng2020']
 
 lexicons with linked concepts:
-['doid', 'hp', 'go', 'chebi_lite', 'lexicon']
+['bireme_decs_eng2020', 'doid', 'hp', 'go', 'lexicon', 'bireme_decs_spa2020', 'bireme_decs_por2020', 'radlex', 'chebi_lite']
 >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
 wrote genelist lexicon
 >>> merpy.process_lexicon("genelist")
