@@ -17,8 +17,7 @@ More information about MER can be found in:
 [https://www.researchgate.net/publication/316545534_MER_a_Minimal_Named-Entity_Recognition_Tagger_and_Annotation_Server]
 
 
-** New **
-** **NEW** **
+**NEW**
 - Package lexicons202103.tgz is available
 - Multilingual lexicons using DeCS
 
