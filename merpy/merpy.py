@@ -8,7 +8,7 @@ import re
 import urllib.request
 from subprocess import Popen, PIPE
 import pkg_resources as pkg
-import requests
+# import requests
 import tarfile
 import multiprocessing as mp
 
@@ -358,10 +358,12 @@ def download_mer():
         >>> merpy.download_mer()
     
     """
-
     download_link = "https://github.com/lasigeBioTM/MER/archive/master.zip"
-    urllib.request.urlretrieve(download_link, "dishin.zip")[0]
-    with zipfile.ZipFile("dishin.zip", "r") as zip_ref:
+    file_name = 'mer.zip'
+    with urllib.request.urlopen(download_link) as response, open(file_name, 'wb') as out_file:
+        data = response.read() # a `bytes` object
+        out_file.write(data)
+    with zipfile.ZipFile(file_name, "r") as zip_ref:
         zip_ref.extractall()
 
     bash_scripts = ["get_entities.sh", "get_similarity.sh", "produce_data_files.sh"]
@@ -370,7 +372,7 @@ def download_mer():
         os.chmod(mer_path + "/" + script_name, stat.S_IRWXU)
 
     # clean up
-    os.remove("dishin.zip")
+    os.remove(file_name)
     shutil.rmtree("MER-master/")
 
 
@@ -393,13 +395,17 @@ def download_lexicons(
 
     """
 
-    urllib.request.urlretrieve(download_link, "lexicons202103.tgz")[0]
-    tf = tarfile.open("lexicons202103.tgz", mode="r")
+    file_name = 'lexicons.tgz'
+    with urllib.request.urlopen(download_link) as response, open(file_name, 'wb') as out_file:
+        data = response.read() # a `bytes` object
+        out_file.write(data)
+        
+    tf = tarfile.open(file_name, mode="r")
     tf.extractall(mer_path + "data")
     tf.close()
-
+        
     # clean up
-    os.remove("lexicons202103.tgz")
+    os.remove(file_name)
 
 
 def create_lexicon(entities, name):
@@ -575,16 +581,22 @@ def download_lexicon(url, name, ltype="txt"):
         [['0', '8', 'caffeine', 'http://purl.obolibrary.org/obo/CHEBI_27732']]
 
     """
-    if url.startswith("http"):
-        r = requests.get(url)
-        with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
-            f.write(r.content)
-    elif url.startswith("ftp"):
-        r = urllib.request.urlopen(url)
+    # if url.startswith("http"):
+    #     r = requests.get(url)
+    #     with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
+    #         f.write(r.content)
+    # elif url.startswith("ftp"):
+    #     r = urllib.request.urlopen(url)
 
-        with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
-            shutil.copyfileobj(r, f)
+    #     with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
+    #         shutil.copyfileobj(r, f)
 
+    file_name = mer_path + "/data/" + name + "." + ltype
+    with urllib.request.urlopen(url) as response, open(file_name, 'wb') as out_file:
+        data = response.read() # a `bytes` object
+        out_file.write(data)
+
+            
     print("wrote {} lexicon".format(name))
 
 
