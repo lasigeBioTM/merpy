@@ -11,7 +11,7 @@ import pkg_resources as pkg
 # import requests
 import tarfile
 import multiprocessing as mp
-
+import ssmpy
 
 mer_path = pkg.resource_filename("merpy", "MER/")
 
@@ -35,8 +35,8 @@ def delete_obsolete(lexicon):
     :param lexicon: lexicon to remove obsolete concepts
     :type lexicon: string
 
-
     :Example:
+
     >>> import merpy
     >>> mappings = {"obsolete gold": 1, "silver": 2, "gold": 1}
     >>> create_lexicon(mappings.keys(), "metals")
@@ -78,7 +78,7 @@ def delete_obsolete(lexicon):
 def delete_entity_by_uri(entity_uri, lexicon):
     """ Delete entity or list of entities
     
-    :param entity_text: label or list of labels of the entities to delete
+    :param entity_uri: label or list of labels of the entities to delete
     :type entity_text: string or list
     :param lexicon: lexicon where the entities should be deleted from
     :type lexicon: string
@@ -108,7 +108,7 @@ def add_entity(entity_text, lexicon, uri=None):
 
 
 def delete_entity(entity_text, lexicon):
-    """ delete entity from lexicon
+    """ Delete entity from lexicon 
     if one word delete from word1, if 2 words delete from word2, if more delete from words.txt
     
     :param entity_text: label or list of labels of the entities to delete
@@ -117,18 +117,20 @@ def delete_entity(entity_text, lexicon):
     :type lexicon: string
 
     :Example:
+
     >>> import merpy
     >>> merpy.download_lexicon("https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl", "metals", "owl")
     wrote metals lexicon
     >>> merpy.process_lexicon("metals", "owl")
     >>> merpy.get_entities("gold silver metal", "metals")
     [['0', '4', 'gold', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold'], \
-['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver'], \
-['12', '17', 'metal', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#metal']]
+    ['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver'], \
+    ['12', '17', 'metal', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#metal']]
     >>> merpy.delete_entity("metal", "metals")
     >>> merpy.get_entities("gold silver metal", "metals")
     [['0', '4', 'gold', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#gold'], \
-['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver']]
+    ['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver']]
+
     """
     basepath = mer_path + "/data/" + lexicon
     if isinstance(entity_text, str):
@@ -176,6 +178,7 @@ def merge_processed_lexicons(lexicon_list, new_name):
     :type new_name: string
 
     :Example:
+
     >>> import merpy
     >>> merpy.download_lexicons()
     >>> merpy.merge_processed_lexicons(["chebi_lite", "hp", "go"], "chebihpgo")
@@ -660,3 +663,47 @@ def show_lexicons():
     print()
     print("lexicons with linked concepts:")
     print(lexicons[2])
+
+
+def get_similarities(entities, database):
+    """ Get the most similar term and its similarity within a list of recognized entities 
+
+    :param entities: entities recognized by get_entities 
+    :type entities: list
+    :param database: filename with db file containing the DiShIn database to use, for example: chebi.db
+
+                     wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz; gunzip -N chebi202104.db.gz
+    :type database: string
+
+    :return: list of entities including for each entity the similarity value of the most similar entity (excluding itself) 
+    :rtype: list
+
+    :Example:
+
+        >>> import merpy
+        >>> import ssmpy 
+        >>> merpy.process_lexicon("lexicon")
+        >>> document = "α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide"
+        >>> entities = merpy.get_entities(document, "lexicon") 
+        >>> merpy.get_similarities(entities, 'chebi.db')
+        [['0', '9', 'α-maltose', 'http://purl.obolibrary.org/obo/CHEBI_18167', 0.02834388514184269], ['14', '28', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '62', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '79', 'nicotinic acid D-ribonucleotide', 'http://purl.obolibrary.org/obo/CHEBI_15763', 0.07402224403263755]]
+
+    """
+    ssmpy.semantic_base(database)
+    
+    newentities = []
+    for t1 in range(len(entities)):
+        sim = 0
+        for t2 in range(len(entities)):
+            t1acc = entities[t1][3].rpartition('/')[-1]
+            t2acc = entities[t2][3].rpartition('/')[-1]
+            if t1acc != t2acc :
+                e1 = ssmpy.get_id(t1acc)
+                e2 = ssmpy.get_id(t2acc)            
+                newsim = ssmpy.ssm_lin(e1,e2)
+                if newsim > sim : 
+                    sim = newsim
+        entities[t1].append(sim)
+        newentities.append(entities[t1])
+                    
+    return newentities

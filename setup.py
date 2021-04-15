@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="merpy",
-    version="1.7.2",
+    version="1.7.4",
     description="Use Minimal Named-Entity Recognizer (MER) inside python",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -23,6 +23,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     package_data={"merpy": ["MER/*", "MER/data/*"]},
-    install_requires=["requests"],
+    install_requires=["ssmpy"],
     extras_require={"dev": ["setuptools-changelog"]},
 )
