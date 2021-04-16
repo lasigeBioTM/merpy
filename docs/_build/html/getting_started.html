@@ -88,6 +88,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dependencies</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#awk">awk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssmpy">ssmpy</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#installation">Installation</a></li>
@@ -179,8 +180,9 @@ the program will work.</p>
 </pre></div>
 </div>
 <p>Currently, merpy will not run unless gawk is available.</p>
-<p>ssmpy
-~~~</p>
+</div>
+<div class="section" id="ssmpy">
+<h2>ssmpy<a class="headerlink" href="#ssmpy" title="Permalink to this headline">¶</a></h2>
 <p>To calculate similarities between the recognized entities</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ssmpy</span>
 </pre></div>
@@ -241,8 +243,10 @@ data:</p>
 </div>
 <div class="section" id="semantic-similarities">
 <h1>Semantic Similarities<a class="headerlink" href="#semantic-similarities" title="Permalink to this headline">¶</a></h1>
-<p>$ wget <a class="reference external" href="http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz">http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz</a>
-$ gunzip -N chebi202104.db.gz</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz
+$ gunzip -N chebi202104.db.gz
+</pre></div>
+</div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;lexicon&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s2">&quot;α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide&quot;</span>

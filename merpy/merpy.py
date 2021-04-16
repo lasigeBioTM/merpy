@@ -288,13 +288,13 @@ def get_entities_mp(documents, lexicon, n_cores=4):
 
 
     :Examples:
-        >>> import merpy
-        >>> merpy.download_lexicons()
-        >>> doc_text = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
-        >>> docs = {i:doc_text for i in range(10)}
-        >>> entities = merpy.get_entities_mp(docs, "hp")
-        >>> print(len(entities))
-        10
+    >>> import merpy
+    >>> merpy.download_lexicons()
+    >>> doc_text = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+    >>> docs = {i:doc_text for i in range(10)}
+    >>> entities = merpy.get_entities_mp(docs, "hp")
+    >>> print(len(entities))
+    10
 
     """
     docs = [documents[d] for d in range(len(documents))]
@@ -317,11 +317,11 @@ def get_entities(text, lexicon):
 
     :Example:
 
-        >>> import merpy
-        >>> merpy.download_lexicons()
-        >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
-        >>> merpy.get_entities(document, "hp")
-        [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
+    >>> import merpy
+    >>> merpy.download_lexicons()
+    >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+    >>> merpy.get_entities(document, "hp")
+    [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
 ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], \
 ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378']]
     
@@ -357,8 +357,8 @@ def download_mer():
     """Download latest version of MER from GitHub.
 
     :Example:
-        >>> import merpy
-        >>> merpy.download_mer()
+    >>> import merpy
+    >>> merpy.download_mer()
     
     """
     download_link = "https://github.com/lasigeBioTM/MER/archive/master.zip"
@@ -379,20 +379,19 @@ def download_mer():
     shutil.rmtree("MER-master/")
 
 
-def download_lexicons(
-    download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons202103.tgz"
-):
+def download_lexicons(download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons202103.tgz"):
     """Download preprocessed lexicons
 
     :param link: link with tar file containing preprocessed lexicons
     :type link: string
 
     :Example:
-        >>> import merpy
-        >>> merpy.download_lexicons()
-        >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
-        >>> merpy.get_entities(document, "hp")
-        [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
+
+    >>> import merpy
+    >>> merpy.download_lexicons()
+    >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
+    >>> merpy.get_entities(document, "hp")
+    [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
 ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], \
 ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378']]
 
@@ -420,12 +419,12 @@ def create_lexicon(entities, name):
     :type name: string
 
     :Example:
-        >>> import merpy
-        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
-        wrote genelist lexicon
-        >>> merpy.process_lexicon("genelist")
-        >>> merpy.get_entities("gene1 and gene2", "genelist")
-        [['0', '5', 'gene1'], ['10', '15', 'gene2']]
+    >>> import merpy
+    >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+    wrote genelist lexicon
+    >>> merpy.process_lexicon("genelist")
+    >>> merpy.get_entities("gene1 and gene2", "genelist")
+    [['0', '5', 'gene1'], ['10', '15', 'gene2']]
 
     """
     if "_" in name:
@@ -448,14 +447,14 @@ def create_lexicon_from_file(filename, name, links_file=None):
     :type links_file: string
 
     :Example:
-        >>> import merpy
-        >>> with open("genelist", 'w') as f:
-        ...     f.write("\\n".join(["gene1", "gene2", "gene3"])) #doctest: +SKIP
-        >>> merpy.create_lexicon_from_file("genelist", "genelist")
-        copied genelist lexicon
-        >>> merpy.process_lexicon("genelist")
-        >>> merpy.get_entities("gene1 and gene2", "genelist")
-        [['0', '5', 'gene1'], ['10', '15', 'gene2']]
+    >>> import merpy
+    >>> with open("genelist", 'w') as f:
+    ...     f.write("\\n".join(["gene1", "gene2", "gene3"])) #doctest: +SKIP
+    >>> merpy.create_lexicon_from_file("genelist", "genelist")
+    copied genelist lexicon
+    >>> merpy.process_lexicon("genelist")
+    >>> merpy.get_entities("gene1 and gene2", "genelist")
+    [['0', '5', 'gene1'], ['10', '15', 'gene2']]
     """
 
     check_gawk()
@@ -477,11 +476,11 @@ def delete_lexicon(name, delete_lexicon=False):
     :type name: Boolean
 
     :Example:
-        >>> import merpy
-        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
-        wrote genelist lexicon
-        >>> merpy.delete_lexicon("genelist")
-        deleted genelist lexicon
+    >>> import merpy
+    >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+    wrote genelist lexicon
+    >>> merpy.delete_lexicon("genelist")
+    deleted genelist lexicon
     """
 
     for filename in glob.glob(mer_path + "/data/" + name + "_*"):
@@ -502,19 +501,19 @@ def rename_lexicon(name, new_name):
     :type name: string
 
     :Example:
-        >>> import merpy
-        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
-        wrote genelist lexicon
-        >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelists")
-        wrote genelists lexicon
-        >>> merpy.rename_lexicon("genelist", "genes")
-        renamed genelist lexicon to genes
-        >>> "genelists" in merpy.get_lexicons()[0]
-        True
-        >>> "genelist" not in merpy.get_lexicons()[0]
-        True
-        >>> "genes" in merpy.get_lexicons()[0]
-        True
+    >>> import merpy
+    >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
+    wrote genelist lexicon
+    >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelists")
+    wrote genelists lexicon
+    >>> merpy.rename_lexicon("genelist", "genes")
+    renamed genelist lexicon to genes
+    >>> "genelists" in merpy.get_lexicons()[0]
+    True
+    >>> "genelist" not in merpy.get_lexicons()[0]
+    True
+    >>> "genes" in merpy.get_lexicons()[0]
+    True
     """
     if "_" in new_name:
         new_name = name.replace("_", "")
@@ -538,15 +537,15 @@ def create_mappings(mapped_entities, name):
     :type name: string
 
     :Example:
-        >>> import merpy
-        >>> mappings = {"gold": 1, "silver": 2, "metal": [3,4]}
-        >>> create_lexicon(mappings.keys(), "metals")
-        wrote metals lexicon
-        >>> create_mappings(mappings, "metals")
-        wrote metals mappings
-        >>> merpy.process_lexicon("metals")
-        >>> merpy.get_entities("gold and silver are metals", "metals")
-        [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
+    >>> import merpy
+    >>> mappings = {"gold": 1, "silver": 2, "metal": [3,4]}
+    >>> create_lexicon(mappings.keys(), "metals")
+    wrote metals lexicon
+    >>> create_mappings(mappings, "metals")
+    wrote metals mappings
+    >>> merpy.process_lexicon("metals")
+    >>> merpy.get_entities("gold and silver are metals", "metals")
+    [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
     """
     with open(
         mer_path + "/data/" + name + "_links.tsv", "w", encoding="utf8"
@@ -571,17 +570,17 @@ def download_lexicon(url, name, ltype="txt"):
     :param format: format of lexicon file (txt, owl or rdf)
 
     :Example:
-        >>> import merpy
-        >>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi_txt", 'txt')
-        wrote chebi_txt lexicon
-        >>> merpy.process_lexicon("chebi_txt", "txt")
-        >>> merpy.get_entities("caffeine", "chebi_txt")
-        [['0', '8', 'caffeine']]
-        >>> merpy.download_lexicon("ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi_lite.owl", 'chebi_lite', 'owl')
-        wrote chebi_lite lexicon
-        >>> merpy.process_lexicon("chebi_lite", "owl")
-        >>> merpy.get_entities("caffeine", "chebi_lite")
-        [['0', '8', 'caffeine', 'http://purl.obolibrary.org/obo/CHEBI_27732']]
+    >>> import merpy
+    >>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi_txt", 'txt')
+    wrote chebi_txt lexicon
+    >>> merpy.process_lexicon("chebi_txt", "txt")
+    >>> merpy.get_entities("caffeine", "chebi_txt")
+    [['0', '8', 'caffeine']]
+    >>> merpy.download_lexicon("ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi_lite.owl", 'chebi_lite', 'owl')
+    wrote chebi_lite lexicon
+    >>> merpy.process_lexicon("chebi_lite", "owl")
+    >>> merpy.get_entities("caffeine", "chebi_lite")
+    [['0', '8', 'caffeine', 'http://purl.obolibrary.org/obo/CHEBI_27732']]
 
     """
     # if url.startswith("http"):
@@ -610,9 +609,9 @@ def get_lexicons():
     :rtype: list
 
     :Example:
-        >>> import merpy
-        >>> merpy.get_lexicons() # doctest: +ELLIPSIS
-        ([...], [...], [...])
+    >>> import merpy
+    >>> merpy.get_lexicons() # doctest: +ELLIPSIS
+    ([...], [...], [...])
 
     """
     all_lexicons, loaded_lexicons, links_lexicons = [], [], []
@@ -642,16 +641,16 @@ def show_lexicons():
     """Print lexicon list
 
     :Example:
-        >>> import merpy
-        >>> merpy.show_lexicons() # doctest: +ELLIPSIS
-        lexicons preloaded:
-        [...]
-        <BLANKLINE>
-        lexicons loaded ready to use:
-        [...]
-        <BLANKLINE>
-        lexicons with linked concepts:
-        [...]
+    >>> import merpy
+    >>> merpy.show_lexicons() # doctest: +ELLIPSIS
+    lexicons preloaded:
+    [...]
+    <BLANKLINE>
+    lexicons loaded ready to use:
+    [...]
+    <BLANKLINE>
+    lexicons with linked concepts:
+    [...]
 
     """
     lexicons = get_lexicons()
@@ -680,13 +679,13 @@ def get_similarities(entities, database):
 
     :Example:
 
-        >>> import merpy
-        >>> import ssmpy 
-        >>> merpy.process_lexicon("lexicon")
-        >>> document = "α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide"
-        >>> entities = merpy.get_entities(document, "lexicon") 
-        >>> merpy.get_similarities(entities, 'chebi.db')
-        [['0', '9', 'α-maltose', 'http://purl.obolibrary.org/obo/CHEBI_18167', 0.02834388514184269], ['14', '28', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '62', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '79', 'nicotinic acid D-ribonucleotide', 'http://purl.obolibrary.org/obo/CHEBI_15763', 0.07402224403263755]]
+    >>> import merpy
+    >>> import ssmpy 
+    >>> merpy.process_lexicon("lexicon")
+    >>> document = "α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide"
+    >>> entities = merpy.get_entities(document, "lexicon") 
+    >>> merpy.get_similarities(entities, 'chebi.db')
+    [['0', '9', 'α-maltose', 'http://purl.obolibrary.org/obo/CHEBI_18167', 0.02834388514184269], ['14', '28', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '62', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '79', 'nicotinic acid D-ribonucleotide', 'http://purl.obolibrary.org/obo/CHEBI_15763', 0.07402224403263755]]
 
     """
     ssmpy.semantic_base(database)

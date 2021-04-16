@@ -27,7 +27,7 @@ For example, to install GNU awk on Ubuntu:
 Currently, merpy will not run unless gawk is available.
 
 ssmpy
-~~~
+~~~~~
 
 To calculate similarities between the recognized entities
 
@@ -94,9 +94,9 @@ wrote chebi lexicon
 
 
 Semantic Similarities 
------------
+---------------------
 
-.. code:: bash
+::
 
 $ wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz
 $ gunzip -N chebi202104.db.gz
