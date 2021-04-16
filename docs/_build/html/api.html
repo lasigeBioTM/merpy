@@ -480,6 +480,39 @@ if one word delete from word1, if 2 words delete from word2, if more delete from
 </dd></dl>
 
 <dl class="py function">
+<dt id="merpy.get_similarities">
+<code class="sig-prename descclassname"><span class="pre">merpy.</span></code><code class="sig-name descname"><span class="pre">get_similarities</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entities</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.get_similarities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the most similar term and its similarity within a list of recognized entities</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entities</strong> (<em>list</em>) – entities recognized by get_entities</p></li>
+<li><p><strong>database</strong> (<em>string</em>) – <p>filename with db file containing the DiShIn database to use, for example: chebi.db</p>
+<p>wget <a class="reference external" href="http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz">http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz</a>; gunzip -N chebi202104.db.gz</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of entities including for each entity the similarity value of the most similar entity (excluding itself)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">Example</dt>
+<dd class="field-even"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">ssmpy</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;lexicon&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s2">&quot;α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entities</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;lexicon&quot;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_similarities</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="s1">&#39;chebi.db&#39;</span><span class="p">)</span>
+<span class="go">[[&#39;0&#39;, &#39;9&#39;, &#39;α-maltose&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_18167&#39;, 0.02834388514184269], [&#39;14&#39;, &#39;28&#39;, &#39;nicotinic acid&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15940&#39;, 0.07402224403263755], [&#39;48&#39;, &#39;62&#39;, &#39;nicotinic acid&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15940&#39;, 0.07402224403263755], [&#39;48&#39;, &#39;79&#39;, &#39;nicotinic acid D-ribonucleotide&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15763&#39;, 0.07402224403263755]]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="merpy.merge_processed_lexicons">
 <code class="sig-prename descclassname"><span class="pre">merpy.</span></code><code class="sig-name descname"><span class="pre">merge_processed_lexicons</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lexicon_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.merge_processed_lexicons" title="Permalink to this definition">¶</a></dt>
 <dd><p>Merge various processed lexicons into one</p>

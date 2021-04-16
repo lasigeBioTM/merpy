@@ -1,5 +1,6 @@
 from .merpy import (
     get_entities,
+    get_similarities,
     generate_lexicon,
     process_lexicon,
     show_lexicons,
@@ -23,6 +24,7 @@ from .merpy import (
 name = "merpy"
 __all__ = [
     "get_entities",
+    "get_similarities",
     "generate_lexicon",
     "process_lexicon",
     "show_lexicons",
