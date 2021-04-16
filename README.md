@@ -33,9 +33,18 @@ MER was developed and tested using the GNU awk (gawk) and grep. If you have anot
 
 For example, to install GNU awk on Ubuntu:
 
-```
+```bash
 sudo apt-get install gawk
 ```
+
+### ssmpy
+
+To calculate similarities between the recognized entities
+
+```bash
+pip install ssmpy
+```
+
 
 ## Installation
 ```bash
@@ -92,6 +101,11 @@ wrote chebi lexicon
 ```
 
 ## Semantic Similarities 
+
+```bash
+wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz
+gunzip -N chebi202104.db.gz
+```
 
 ```python
 >>> import merpy
