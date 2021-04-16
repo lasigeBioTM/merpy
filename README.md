@@ -69,7 +69,15 @@ Then you might want to update the MER scripts and download preprocessed data:
 ```python
 >>> import merpy
 >>> merpy.download_lexicons()
->>> merpy.process_lexicon("hp")
+>>> lexicons = merpy.get_lexicons()
+>>> merpy.show_lexicons()
+lexicons preloaded:
+['lexicon', 'bireme_decs_por2020', 'bireme_decs_spa2020', 'wordnet-hyponym', 'radlex', 'doid', 'bireme_decs_eng2020', 'go', 'hp', 'chebi_lite']
+lexicons loaded ready to use:
+['bireme_decs_por2020', 'chebi_lite', 'hp', 'bireme_decs_spa2020', 'wordnet-hyponym', 'doid', 'lexicon', 'radlex', 'go', 'bireme_decs_eng2020']
+lexicons with linked concepts:
+['bireme_decs_eng2020', 'doid', 'hp', 'go', 'lexicon', 'bireme_decs_spa2020', 'bireme_decs_por2020', 'radlex', 'chebi_lite']
+
 >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired ... Acetylcysteine for reducing the oxygen transport and caffeine to stimulate ... fever, tachypnea ... fiebre, taquipnea ... febre, taquipneia' 
 >>> entities = merpy.get_entities(document, "hp") # get_entities_mp uses multiprocessing (set n_cores param)
 >>> print(entities)
@@ -77,17 +85,8 @@ Then you might want to update the MER scripts and download preprocessed data:
 
 >>> entities = merpy.get_entities(document, "bireme_decs_por2020") 
 >>> print(entities)
-[['378', '383', 'febre', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D005334'], ['385', '395', 'taquipneia', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D059246']]
->>> lexicons = merpy.get_lexicons()
->>> merpy.show_lexicons()
-lexicons preloaded:
-['lexicon', 'bireme_decs_por2020', 'bireme_decs_spa2020', 'wordnet-hyponym', 'radlex', 'doid', 'bireme_decs_eng2020', 'go', 'hp', 'chebi_lite']
+[['0', '9', 'Influenza', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D007251'], ['78', '87', 'influenza', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D007251'], ['378', '383', 'febre', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D005334'], ['385', '395', 'taquipneia', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D059246']]
 
-lexicons loaded ready to use:
-['bireme_decs_por2020', 'chebi_lite', 'hp', 'bireme_decs_spa2020', 'wordnet-hyponym', 'doid', 'lexicon', 'radlex', 'go', 'bireme_decs_eng2020']
-
-lexicons with linked concepts:
-['bireme_decs_eng2020', 'doid', 'hp', 'go', 'lexicon', 'bireme_decs_spa2020', 'bireme_decs_por2020', 'radlex', 'chebi_lite']
 >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
 wrote genelist lexicon
 >>> merpy.process_lexicon("genelist")
@@ -96,8 +95,6 @@ deleted genelist lexicon
 >>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi")
 wrote chebi lexicon
 >>> merpy.process_lexicon("chebi")
-
-
 ```
 
 ## Semantic Similarities 
