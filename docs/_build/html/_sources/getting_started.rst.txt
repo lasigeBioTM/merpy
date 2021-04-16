@@ -65,15 +65,6 @@ Basic Usage
 
 >>> import merpy
 >>> merpy.download_lexicons()
->>> merpy.process_lexicon("hp")
->>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired ... Acetylcysteine for reducing the oxygen transport and caffeine to stimulate ... fever, tachypnea ... fiebre, taquipnea ... febre, taquipneia' 
->>> entities = merpy.get_entities(document, "hp") # get_entities_mp uses multiprocessing (set n_cores param)
->>> print(entities)
-[['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], ['119', '125', 'severe', 'http://purl.obolibrary.org/obo/HP_0012828'], ['168', '173', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['181', '185', 'nose', 'http://purl.obolibrary.org/obo/UBERON_0000004'], ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], ['214', '222', 'headache', 'http://purl.obolibrary.org/obo/HP_0002315'], ['224', '232', 'coughing', 'http://purl.obolibrary.org/obo/HP_0012735'], ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378'], ['288', '294', 'oxygen', 'http://purl.obolibrary.org/obo/CHEBI_15379'], ['295', '304', 'transport', 'http://purl.obolibrary.org/obo/GO_0006810'], ['335', '340', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['342', '351', 'tachypnea', 'http://purl.obolibrary.org/obo/HP_0002789'], ['175', '185', 'runny nose', 'http://purl.obolibrary.org/obo/HP_0031417'], ['187', '198', 'sore throat', 'http://purl.obolibrary.org/obo/HP_0033050']]
-
->>> entities = merpy.get_entities(document, "bireme_decs_por2020") 
->>> print(entities)
-[['378', '383', 'febre', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D005334'], ['385', '395', 'taquipneia', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D059246']]
 >>> lexicons = merpy.get_lexicons()
 >>> merpy.show_lexicons()
 lexicons preloaded:
@@ -82,6 +73,15 @@ lexicons loaded ready to use:
 ['bireme_decs_por2020', 'chebi_lite', 'hp', 'bireme_decs_spa2020', 'wordnet-hyponym', 'doid', 'lexicon', 'radlex', 'go', 'bireme_decs_eng2020']
 lexicons with linked concepts:
 ['bireme_decs_eng2020', 'doid', 'hp', 'go', 'lexicon', 'bireme_decs_spa2020', 'bireme_decs_por2020', 'radlex', 'chebi_lite']
+
+>>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired ... Acetylcysteine for reducing the oxygen transport and caffeine to stimulate ... fever, tachypnea ... fiebre, taquipnea ... febre, taquipneia' 
+>>> entities = merpy.get_entities(document, "hp") # get_entities_mp uses multiprocessing (set n_cores param)
+>>> print(entities)
+[['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], ['119', '125', 'severe', 'http://purl.obolibrary.org/obo/HP_0012828'], ['168', '173', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['181', '185', 'nose', 'http://purl.obolibrary.org/obo/UBERON_0000004'], ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], ['214', '222', 'headache', 'http://purl.obolibrary.org/obo/HP_0002315'], ['224', '232', 'coughing', 'http://purl.obolibrary.org/obo/HP_0012735'], ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378'], ['288', '294', 'oxygen', 'http://purl.obolibrary.org/obo/CHEBI_15379'], ['295', '304', 'transport', 'http://purl.obolibrary.org/obo/GO_0006810'], ['335', '340', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['342', '351', 'tachypnea', 'http://purl.obolibrary.org/obo/HP_0002789'], ['175', '185', 'runny nose', 'http://purl.obolibrary.org/obo/HP_0031417'], ['187', '198', 'sore throat', 'http://purl.obolibrary.org/obo/HP_0033050']]
+
+>>> entities = merpy.get_entities(document, "bireme_decs_por2020") 
+>>> print(entities)
+[['0', '9', 'Influenza', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D007251'], ['78', '87', 'influenza', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D007251'], ['378', '383', 'febre', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D005334'], ['385', '395', 'taquipneia', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D059246']]
 
 >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
 wrote genelist lexicon
