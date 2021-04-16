@@ -54,6 +54,7 @@ Then you might want to update the MER scripts and download preprocessed data:
 >>> merpy.download_lexicons()
 ```
 
+
 ## Basic Usage
 
 ```python
@@ -64,6 +65,7 @@ Then you might want to update the MER scripts and download preprocessed data:
 >>> entities = merpy.get_entities(document, "hp") # get_entities_mp uses multiprocessing (set n_cores param)
 >>> print(entities)
 [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], ['119', '125', 'severe', 'http://purl.obolibrary.org/obo/HP_0012828'], ['168', '173', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['181', '185', 'nose', 'http://purl.obolibrary.org/obo/UBERON_0000004'], ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], ['214', '222', 'headache', 'http://purl.obolibrary.org/obo/HP_0002315'], ['224', '232', 'coughing', 'http://purl.obolibrary.org/obo/HP_0012735'], ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378'], ['288', '294', 'oxygen', 'http://purl.obolibrary.org/obo/CHEBI_15379'], ['295', '304', 'transport', 'http://purl.obolibrary.org/obo/GO_0006810'], ['335', '340', 'fever', 'http://purl.obolibrary.org/obo/HP_0001945'], ['342', '351', 'tachypnea', 'http://purl.obolibrary.org/obo/HP_0002789'], ['175', '185', 'runny nose', 'http://purl.obolibrary.org/obo/HP_0031417'], ['187', '198', 'sore throat', 'http://purl.obolibrary.org/obo/HP_0033050']]
+
 >>> entities = merpy.get_entities(document, "bireme_decs_por2020") 
 >>> print(entities)
 [['378', '383', 'febre', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D005334'], ['385', '395', 'taquipneia', 'https://decs.bvsalud.org/ths/?filter=ths_regid&q=D059246']]
@@ -86,5 +88,17 @@ deleted genelist lexicon
 wrote chebi lexicon
 >>> merpy.process_lexicon("chebi")
 
+
+```
+
+## Semantic Similarities 
+
+```python
+>>> import merpy
+>>> merpy.process_lexicon("lexicon")
+>>> document = "α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide"
+>>> entities = merpy.get_entities(document, "lexicon") 
+>>> merpy.get_similarities(entities, 'chebi.db')
+[['0', '9', 'α-maltose', 'http://purl.obolibrary.org/obo/CHEBI_18167', 0.02834388514184269], ['14', '28', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '62', 'nicotinic acid', 'http://purl.obolibrary.org/obo/CHEBI_15940', 0.07402224403263755], ['48', '79', 'nicotinic acid D-ribonucleotide', 'http://purl.obolibrary.org/obo/CHEBI_15763', 0.07402224403263755]]
 
 ```
