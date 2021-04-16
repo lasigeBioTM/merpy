@@ -78,12 +78,11 @@ Basic Usage
 >>> merpy.show_lexicons()
 lexicons preloaded:
 ['lexicon', 'bireme_decs_por2020', 'bireme_decs_spa2020', 'wordnet-hyponym', 'radlex', 'doid', 'bireme_decs_eng2020', 'go', 'hp', 'chebi_lite']
-
 lexicons loaded ready to use:
 ['bireme_decs_por2020', 'chebi_lite', 'hp', 'bireme_decs_spa2020', 'wordnet-hyponym', 'doid', 'lexicon', 'radlex', 'go', 'bireme_decs_eng2020']
-
 lexicons with linked concepts:
 ['bireme_decs_eng2020', 'doid', 'hp', 'go', 'lexicon', 'bireme_decs_spa2020', 'bireme_decs_por2020', 'radlex', 'chebi_lite']
+
 >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
 wrote genelist lexicon
 >>> merpy.process_lexicon("genelist")
@@ -96,6 +95,11 @@ wrote chebi lexicon
 
 Semantic Similarities 
 -----------
+
+.. code:: bash
+
+$ wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz
+$ gunzip -N chebi202104.db.gz
 
 .. code:: python
 
