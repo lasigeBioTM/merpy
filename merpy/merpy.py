@@ -436,25 +436,28 @@ def create_lexicon(entities, name):
 
 
 def create_lexicon_from_file(filename, name, links_file=None):
-    """Create a lexicon based on an existing file
-    The file is simply copied to the datadir
+    """Create a lexicon based on an existing file.
+    The file is simply copied to the datadir. 
+
 
     :param filename: file with list of entities
     :type entities: string
     :param name: name of lexicon
     :type name: string
-    :param links_file: path to links file or None
+    :param links_file: path to links file or None (labels must be in lowercase)
     :type links_file: string
 
     :Example:
-    >>> import merpy
+    >> import merpy
     >>> with open("genelist", 'w') as f:
-    ...     f.write("\\n".join(["gene1", "gene2", "gene3"])) #doctest: +SKIP
-    >>> merpy.create_lexicon_from_file("genelist", "genelist")
+    ...  f.write("\n".join(["Gene1", "Gene2", "Gene3"]))
+    >>> with open("genelist_links", 'w') as g:
+    ...  g.write("\n".join(["gene1\tID1", "gene2\tID2", "gene3\tID3"]))
+    >>> merpy.create_lexicon_from_file("genelist", "genelist", "genelist_links")
     copied genelist lexicon
     >>> merpy.process_lexicon("genelist")
     >>> merpy.get_entities("gene1 and gene2", "genelist")
-    [['0', '5', 'gene1'], ['10', '15', 'gene2']]
+    [['0', '5', 'gene1', 'ID1'], ['10', '15', 'gene2', 'ID2']]
     """
 
     check_gawk()

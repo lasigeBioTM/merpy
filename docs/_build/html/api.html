@@ -188,29 +188,48 @@
 <dl class="py function">
 <dt id="merpy.create_lexicon_from_file">
 <code class="sig-prename descclassname"><span class="pre">merpy.</span></code><code class="sig-name descname"><span class="pre">create_lexicon_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#merpy.create_lexicon_from_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a lexicon based on an existing file
-The file is simply copied to the datadir</p>
+<dd><dl>
+<dt>Create a lexicon based on an existing file.</dt><dd><p>The file is simply copied to the datadir.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> – file with list of entities</p></li>
-<li><p><strong>name</strong> (<em>string</em>) – name of lexicon</p></li>
-<li><p><strong>links_file</strong> (<em>string</em>) – path to links file or None</p></li>
-</ul>
+<dt class="field-odd">param filename</dt>
+<dd class="field-odd"><p>file with list of entities</p>
 </dd>
-<dt class="field-even">Example</dt>
-<dd class="field-even"><p></p></dd>
+<dt class="field-even">type entities</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+<dt class="field-odd">param name</dt>
+<dd class="field-odd"><p>name of lexicon</p>
+</dd>
+<dt class="field-even">type name</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+<dt class="field-odd">param links_file</dt>
+<dd class="field-odd"><p>path to links file or None (labels must be in lowercase)</p>
+</dd>
+<dt class="field-even">type links_file</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;gene1&quot;</span><span class="p">,</span> <span class="s2">&quot;gene2&quot;</span><span class="p">,</span> <span class="s2">&quot;gene3&quot;</span><span class="p">]))</span> 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">create_lexicon_from_file</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">,</span> <span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<p>&gt;&gt; import merpy
+&gt;&gt;&gt; with open(“genelist”, ‘w’) as f:
+…  f.write(“</p>
+</dd>
+<dt>“.join([“Gene1”, “Gene2”, “Gene3”]))</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;genelist_links&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+<span class="gp">... </span> <span class="n">g</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</dd>
+<dt>“.join([“gene1  ID1”, “gene2    ID2”, “gene3    ID3”]))</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">create_lexicon_from_file</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">,</span> <span class="s2">&quot;genelist&quot;</span><span class="p">,</span> <span class="s2">&quot;genelist_links&quot;</span><span class="p">)</span>
 <span class="go">copied genelist lexicon</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="s2">&quot;gene1 and gene2&quot;</span><span class="p">,</span> <span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
-<span class="go">[[&#39;0&#39;, &#39;5&#39;, &#39;gene1&#39;], [&#39;10&#39;, &#39;15&#39;, &#39;gene2&#39;]]</span>
+<span class="go">[[&#39;0&#39;, &#39;5&#39;, &#39;gene1&#39;, &#39;ID1&#39;], [&#39;10&#39;, &#39;15&#39;, &#39;gene2&#39;, &#39;ID2&#39;]]</span>
 </pre></div>
 </div>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
