@@ -448,11 +448,11 @@ def create_lexicon_from_file(filename, name, links_file=None):
     :type links_file: string
 
     :Example:
-    >> import merpy
+    >>> import merpy
     >>> with open("genelist", 'w') as f:
-    ...  f.write("\n".join(["Gene1", "Gene2", "Gene3"]))
+    ...  f.write("\\n".join(["Gene1", "Gene2", "Gene3"]))
     >>> with open("genelist_links", 'w') as g:
-    ...  g.write("\n".join(["gene1\tID1", "gene2\tID2", "gene3\tID3"]))
+    ...  g.write("\\n".join(["gene1\\tID1", "gene2\\tID2", "gene3\\tID3"]))
     >>> merpy.create_lexicon_from_file("genelist", "genelist", "genelist_links")
     copied genelist lexicon
     >>> merpy.process_lexicon("genelist")
