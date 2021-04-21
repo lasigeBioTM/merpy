@@ -13,7 +13,7 @@ setup(
     author="Andre Lamurias",
     author_email="alamurias@lasige.di.fc.ul.pt",
     maintainer="Francisco M Couto",
-    maintainer_email="fcouto@.di.fc.ul.pt",
+    maintainer_email="fcouto@di.fc.ul.pt",
     packages=["merpy"],
     keywords=["ner", "named-entity recognition", "entity linking", "ontologies"],
     url="https://github.com/lasigeBioTM/merpy",
