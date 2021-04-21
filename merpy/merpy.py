@@ -288,6 +288,7 @@ def get_entities_mp(documents, lexicon, n_cores=4):
 
 
     :Examples:
+
     >>> import merpy
     >>> merpy.download_lexicons()
     >>> doc_text = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
@@ -322,8 +323,8 @@ def get_entities(text, lexicon):
     >>> document = 'Influenza, commonly known as "the flu", is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired'
     >>> merpy.get_entities(document, "hp")
     [['111', '115', 'mild', 'http://purl.obolibrary.org/obo/HP_0012825'], \
-['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], \
-['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378']]
+    ['200', '206', 'muscle', 'http://purl.obolibrary.org/obo/UBERON_0005090'], \
+    ['246', '251', 'tired', 'http://purl.obolibrary.org/obo/HP_0012378']]
     
     """
     check_gawk()
@@ -357,6 +358,7 @@ def download_mer():
     """Download latest version of MER from GitHub.
 
     :Example:
+
     >>> import merpy
     >>> merpy.download_mer()
     
@@ -419,6 +421,7 @@ def create_lexicon(entities, name):
     :type name: string
 
     :Example:
+
     >>> import merpy
     >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
     wrote genelist lexicon
@@ -448,6 +451,7 @@ def create_lexicon_from_file(filename, name, links_file=None):
     :type links_file: string
 
     :Example:
+
     >>> import merpy
     >>> with open("genelist", 'w') as f:
     ...  f.write("\\n".join(["Gene1", "Gene2", "Gene3"]))
@@ -479,6 +483,7 @@ def delete_lexicon(name, delete_lexicon=False):
     :type name: Boolean
 
     :Example:
+
     >>> import merpy
     >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
     wrote genelist lexicon
@@ -504,6 +509,7 @@ def rename_lexicon(name, new_name):
     :type name: string
 
     :Example:
+
     >>> import merpy
     >>> merpy.create_lexicon(["gene1", "gene2", "gene3"], "genelist")
     wrote genelist lexicon
@@ -540,6 +546,7 @@ def create_mappings(mapped_entities, name):
     :type name: string
 
     :Example:
+
     >>> import merpy
     >>> mappings = {"gold": 1, "silver": 2, "metal": [3,4]}
     >>> create_lexicon(mappings.keys(), "metals")
@@ -573,6 +580,7 @@ def download_lexicon(url, name, ltype="txt"):
     :param format: format of lexicon file (txt, owl or rdf)
 
     :Example:
+
     >>> import merpy
     >>> merpy.download_lexicon("https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt", "chebi_txt", 'txt')
     wrote chebi_txt lexicon
@@ -612,6 +620,7 @@ def get_lexicons():
     :rtype: list
 
     :Example:
+
     >>> import merpy
     >>> merpy.get_lexicons() # doctest: +ELLIPSIS
     ([...], [...], [...])
@@ -644,6 +653,7 @@ def show_lexicons():
     """Print lexicon list
 
     :Example:
+
     >>> import merpy
     >>> merpy.show_lexicons() # doctest: +ELLIPSIS
     lexicons preloaded:
