@@ -3,4 +3,4 @@ API
 ###
 
 .. raw:: html
-    :file: api.html
+    :file: _static/api.html
