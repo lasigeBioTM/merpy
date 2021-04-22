@@ -1,5 +1,6 @@
+###
 API
-~~~
+###
 
 .. automodule:: merpy
    :members:
