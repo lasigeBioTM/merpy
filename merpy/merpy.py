@@ -59,7 +59,7 @@ def delete_obsolete(lexicon):
         "_words.txt",
         "_links.tsv",
     ]:
-        file = mer_path + "/data/" + lexicon + ending
+        file = mer_path + "data/" + lexicon + ending
         with open(file, "r+") as f:
             new_f = f.readlines()
             f.seek(0)
@@ -89,7 +89,7 @@ def delete_entity_by_uri(entity_uri, lexicon):
     if isinstance(entity_uri, str):
         entity_uri = [entity_uri] 
     # remove from links and save entity labels
-    with open(mer_path + "/data/" + lexicon + "_links.tsv", "r+") as f:
+    with open(mer_path + "data/" + lexicon + "_links.tsv", "r+") as f:
         new_f = f.readlines()
         f.seek(0)
         for line in new_f:
@@ -132,7 +132,7 @@ def delete_entity(entity_text, lexicon):
     ['5', '11', 'silver', 'https://raw.githubusercontent.com/lasigeBioTM/ssm/master/metals.owl#silver']]
 
     """
-    basepath = mer_path + "/data/" + lexicon
+    basepath = mer_path + "data/" + lexicon
     if isinstance(entity_text, str):
         entity_text = [entity_text]
     entities_per_file = {"{}_word1.txt".format(basepath):[],
@@ -191,24 +191,24 @@ def merge_processed_lexicons(lexicon_list, new_name):
     """
     check_gawk()
     # cwd = os.getcwd()
-    # os.chdir(mer_path + "/data/")
+    # os.chdir(mer_path + "data/")
     # merge by file type
     if "_" in new_name:
         new_name = new_name.replace("_", "")
         print("renamed to ", new_name)
     lexicon_files = []
     for l in lexicon_list:
-        lexicon_files += glob.glob(mer_path + "/data/" + l + "_*.txt")
-        lexicon_files += glob.glob(mer_path + "/data/" + l + ".txt")
-        lexicon_files += glob.glob(mer_path + "/data/" + l + "_links.tsv")
+        lexicon_files += glob.glob(mer_path + "data/" + l + "_*.txt")
+        lexicon_files += glob.glob(mer_path + "data/" + l + ".txt")
+        lexicon_files += glob.glob(mer_path + "data/" + l + "_links.tsv")
 
-    with open(mer_path + "/data/" + new_name + ".txt", "w") as outfile:
+    with open(mer_path + "data/" + new_name + ".txt", "w") as outfile:
         for fname in lexicon_files:
             if fname.endswith(".txt") and "_word" not in fname:
                 with open(fname) as infile:
                     outfile.write(infile.read())
 
-    with open(mer_path + "/data/" + new_name + "_links.tsv", "w") as outfile:
+    with open(mer_path + "data/" + new_name + "_links.tsv", "w") as outfile:
         for fname in lexicon_files:
             if fname.endswith("_links.tsv"):
                 with open(fname) as infile:
@@ -216,7 +216,7 @@ def merge_processed_lexicons(lexicon_list, new_name):
 
     for ftype in ["word1", "word2", "words", "words2"]:
         with open(
-            mer_path + "/data/" + new_name + "_{}.txt".format(ftype), "w"
+            mer_path + "data/" + new_name + "_{}.txt".format(ftype), "w"
         ) as outfile:
             for fname in lexicon_files:
                 if fname.endswith("_{}.txt".format(ftype)):
@@ -250,7 +250,7 @@ def process_lexicon(lexicon, ltype="txt"):
     """
     check_gawk()
     cwd = os.getcwd()
-    os.chdir(mer_path + "/data/")
+    os.chdir(mer_path + "data/")
     if sys.version_info[0] == 3 and sys.version_info[1] > 5:
         session = Popen(
             ["../produce_data_files.sh", lexicon + "." + ltype],
@@ -373,8 +373,8 @@ def download_mer():
 
     bash_scripts = ["get_entities.sh", "get_similarity.sh", "produce_data_files.sh"]
     for script_name in bash_scripts:
-        shutil.move("MER-master/" + script_name, mer_path + "/" + script_name)
-        os.chmod(mer_path + "/" + script_name, stat.S_IRWXU)
+        shutil.move("MER-master/" + script_name, mer_path + script_name)
+        os.chmod(mer_path + script_name, stat.S_IRWXU)
 
     # clean up
     os.remove(file_name)
@@ -433,7 +433,7 @@ def create_lexicon(entities, name):
     if "_" in name:
         name = name.replace("_", "")
         print("renamed to ", name)
-    with open(mer_path + "/data/" + name + ".txt", "w", encoding="utf8") as f:
+    with open(mer_path + "data/" + name + ".txt", "w", encoding="utf8") as f:
         f.write("\n".join(entities))
     print("wrote {} lexicon".format(name))
 
@@ -468,9 +468,9 @@ def create_lexicon_from_file(filename, name, links_file=None):
     if "_" in name:
         name = name.replace("_", "")
         print("renamed to ", name)
-    shutil.copyfile(filename, mer_path + "/data/" + name + ".txt")
+    shutil.copyfile(filename, mer_path + "data/" + name + ".txt")
     if links_file is not None:
-        shutil.copyfile(links_file, mer_path + "/data/" + name + "_links.tsv")
+        shutil.copyfile(links_file, mer_path + "data/" + name + "_links.tsv")
     print("copied {} lexicon".format(name))
 
 
@@ -491,11 +491,11 @@ def delete_lexicon(name, delete_lexicon=False):
     deleted genelist lexicon
     """
 
-    for filename in glob.glob(mer_path + "/data/" + name + "_*"):
+    for filename in glob.glob(mer_path + "data/" + name + "_*"):
         os.remove(filename)
 
     if delete_lexicon:
-        for filename in glob.glob(mer_path + "/data/" + name + ".*"):
+        for filename in glob.glob(mer_path + "data/" + name + ".*"):
             os.remove(filename)
     print("deleted {} lexicon".format(name))
 
@@ -528,9 +528,9 @@ def rename_lexicon(name, new_name):
         new_name = name.replace("_", "")
         print("renamed to ", new_name)
 
-    for filename in glob.glob(mer_path + "/data/" + name + "_*"):
+    for filename in glob.glob(mer_path + "data/" + name + "_*"):
         os.rename(filename, filename.replace(name, new_name))
-    for filename in glob.glob(mer_path + "/data/" + name + ".*"):
+    for filename in glob.glob(mer_path + "data/" + name + ".*"):
         os.rename(filename, filename.replace(name, new_name))
     print("renamed {} lexicon to {}".format(name, new_name))
 
@@ -558,7 +558,7 @@ def create_mappings(mapped_entities, name):
     [['0', '4', 'gold', '1'], ['9', '15', 'silver', '2']]
     """
     with open(
-        mer_path + "/data/" + name + "_links.tsv", "w", encoding="utf8"
+        mer_path + "data/" + name + "_links.tsv", "w", encoding="utf8"
     ) as links_file:
         for e in mapped_entities:
             if type(mapped_entities[e]) is list:
@@ -587,7 +587,7 @@ def download_lexicon(url, name, ltype="txt"):
     >>> merpy.process_lexicon("chebi_txt", "txt")
     >>> merpy.get_entities("caffeine", "chebi_txt")
     [['0', '8', 'caffeine']]
-    >>> merpy.download_lexicon("ftp://ftp.ebi.ac.uk/pub/databases/chebi/ontology/chebi_lite.owl", 'chebi_lite', 'owl')
+    >>> merpy.download_lexicon("http://purl.obolibrary.org/obo/chebi/chebi_lite.owl", 'chebi_lite', 'owl')
     wrote chebi_lite lexicon
     >>> merpy.process_lexicon("chebi_lite", "owl")
     >>> merpy.get_entities("caffeine", "chebi_lite")
@@ -596,15 +596,15 @@ def download_lexicon(url, name, ltype="txt"):
     """
     # if url.startswith("http"):
     #     r = requests.get(url)
-    #     with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
+    #     with open(mer_path + "data/" + name + "." + ltype, "wb") as f:
     #         f.write(r.content)
     # elif url.startswith("ftp"):
     #     r = urllib.request.urlopen(url)
 
-    #     with open(mer_path + "/data/" + name + "." + ltype, "wb") as f:
+    #     with open(mer_path + "data/" + name + "." + ltype, "wb") as f:
     #         shutil.copyfileobj(r, f)
 
-    file_name = mer_path + "/data/" + name + "." + ltype
+    file_name = mer_path + "data/" + name + "." + ltype
     with urllib.request.urlopen(url) as response, open(file_name, 'wb') as out_file:
         data = response.read() # a `bytes` object
         out_file.write(data)
@@ -627,7 +627,7 @@ def get_lexicons():
 
     """
     all_lexicons, loaded_lexicons, links_lexicons = [], [], []
-    files = os.listdir(mer_path + "/data/")
+    files = os.listdir(mer_path + "data/")
 
     for f in files:
         if f.endswith(".txt") and not (
