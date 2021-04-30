@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="merpy",
-    version="1.7.7",
+    version="1.7.8",
     description="Use Minimal Named-Entity Recognizer (MER) inside python",
     long_description=long_description,
     long_description_content_type="text/markdown",
