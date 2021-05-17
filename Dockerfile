@@ -1,5 +1,5 @@
 #### To build:
-## docker build github.com/lasigeBioTM/MER -t fjmc/merpy-image
+## docker build github.com/lasigeBioTM/merpy -t fjmc/merpy-image
 #### To test it:
 ## docker run -it --rm --name mer-container fjmc/merpy-image example1.py
 
@@ -34,6 +34,5 @@ RUN apt-get autoremove
 RUN apt-get clean
 
 ENTRYPOINT ["python3"]
-
 
 
