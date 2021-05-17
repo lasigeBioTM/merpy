@@ -18,6 +18,7 @@ More information about MER can be found in:
 
 
 **NEW**
+- Docker image available: https://hub.docker.com/r/fjmc/merpy-image
 - Package lexicons202103.tgz is available
 - Multilingual lexicons using DeCS
 
