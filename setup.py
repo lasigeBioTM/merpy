@@ -23,6 +23,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     package_data={"merpy": ["MER/*", "MER/data/*"]},
-    install_requires=["ssmpy","numpy"],
+    install_requires=["ssmpy","numpy", 'python_version > "3.8"'],
     extras_require={"dev": ["setuptools-changelog"]},
 )
