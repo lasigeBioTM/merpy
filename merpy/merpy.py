@@ -613,7 +613,7 @@ def download_lexicon(url, name, ltype="txt"):
     file_name = mer_path + "data/" + name + "." + ltype
 
 
-    request = urllib.request.Request(url,headers=headers)
+    request = urllib.request.Request(url)
     with urllib.request.urlopen(request) as response, open(file_name, 'wb') as out_file:
         data = response.read() # a `bytes` object
         out_file.write(data)
