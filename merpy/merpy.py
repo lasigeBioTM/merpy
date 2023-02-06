@@ -15,6 +15,8 @@ import ssmpy
 
 mer_path = pkg.resource_filename("merpy", "MER/")
 
+headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:66.0) Gecko/20100101 Firefox/66.0", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "Accept-Language": "fr-fr,en;q=0.5", "Accept-Encoding": "gzip, deflate", "DNT": "1", "Connection": "close", "Upgrade-Insecure-Requests": "1"}
+
 
 def check_gawk():
 
@@ -365,7 +367,9 @@ def download_mer():
     """
     download_link = "https://github.com/lasigeBioTM/MER/archive/master.zip"
     file_name = 'mer.zip'
-    with urllib.request.urlopen(download_link) as response, open(file_name, 'wb') as out_file:
+
+    request = urllib.request.Request(download_link,headers=headers)
+    with urllib.request.urlopen(request) as response, open(file_name, 'wb') as out_file:
         data = response.read() # a `bytes` object
         out_file.write(data)
     with zipfile.ZipFile(file_name, "r") as zip_ref:
@@ -400,7 +404,9 @@ def download_lexicons(download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data
     """
 
     file_name = 'lexicons.tgz'
-    with urllib.request.urlopen(download_link) as response, open(file_name, 'wb') as out_file:
+    
+    request = urllib.request.Request(download_link,headers=headers)
+    with urllib.request.urlopen(request) as response, open(file_name, 'wb') as out_file:
         data = response.read() # a `bytes` object
         out_file.write(data)
         
@@ -605,7 +611,10 @@ def download_lexicon(url, name, ltype="txt"):
     #         shutil.copyfileobj(r, f)
 
     file_name = mer_path + "data/" + name + "." + ltype
-    with urllib.request.urlopen(url) as response, open(file_name, 'wb') as out_file:
+
+
+    request = urllib.request.Request(url,headers=headers)
+    with urllib.request.urlopen(request) as response, open(file_name, 'wb') as out_file:
         data = response.read() # a `bytes` object
         out_file.write(data)
 
