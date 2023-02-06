@@ -1,70 +1,42 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Dependencies &mdash; merpy  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Dependencies &mdash; merpy  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+      <script>
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="API" href="api.html" />
     <link rel="prev" title="Welcome to merpy’s documentation!" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> merpy
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,18 +44,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dependencies</a><ul>
@@ -98,71 +59,30 @@
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">merpy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-      <li>Dependencies</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Dependencies</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <p>MER is a Named-Entity Recognition tool which given any lexicon and any
 input text returns the list of terms recognized in the text, including
 their exact location (annotations).</p>
@@ -176,7 +96,7 @@ their classes.</p>
 have another awk interpreter in your machine, there’s no assurance that
 the program will work.</p>
 <p>For example, to install GNU awk on Ubuntu:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gawk</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gawk</span>
 </pre></div>
 </div>
 <p>Currently, merpy will not run unless gawk is available.</p>
@@ -184,23 +104,23 @@ the program will work.</p>
 <div class="section" id="ssmpy">
 <h2>ssmpy<a class="headerlink" href="#ssmpy" title="Permalink to this headline">¶</a></h2>
 <p>To calculate similarities between the recognized entities</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ssmpy</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ssmpy</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install merpy
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">merpy</span>
 </pre></div>
 </div>
 <p>or</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py install
+<div class="code bash highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 <p>Then you might want to update the MER scripts and download preprocessed
 data:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_mer</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
 </pre></div>
@@ -208,99 +128,138 @@ data:</p>
 </div>
 <div class="section" id="basic-usage">
 <h1>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicons</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">lexicons</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_lexicons</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">show_lexicons</span><span class="p">()</span>
 <span class="go">lexicons preloaded:</span>
-<span class="go">[&#39;lexicon&#39;, &#39;bireme_decs_por2020&#39;, &#39;bireme_decs_spa2020&#39;, &#39;wordnet-hyponym&#39;, &#39;radlex&#39;, &#39;doid&#39;, &#39;bireme_decs_eng2020&#39;, &#39;go&#39;, &#39;hp&#39;, &#39;chebi_lite&#39;]</span>
-<span class="go">lexicons loaded ready to use:</span>
-<span class="go">[&#39;bireme_decs_por2020&#39;, &#39;chebi_lite&#39;, &#39;hp&#39;, &#39;bireme_decs_spa2020&#39;, &#39;wordnet-hyponym&#39;, &#39;doid&#39;, &#39;lexicon&#39;, &#39;radlex&#39;, &#39;go&#39;, &#39;bireme_decs_eng2020&#39;]</span>
-<span class="go">lexicons with linked concepts:</span>
-<span class="go">[&#39;bireme_decs_eng2020&#39;, &#39;doid&#39;, &#39;hp&#39;, &#39;go&#39;, &#39;lexicon&#39;, &#39;bireme_decs_spa2020&#39;, &#39;bireme_decs_por2020&#39;, &#39;radlex&#39;, &#39;chebi_lite&#39;]</span>
+<span class="go">[&#39;cl&#39;, &#39;osci&#39;, &#39;lexicon&#39;, &#39;bireme_decs_por2020&#39;, &#39;bireme_decs_eng2020&#39;, &#39;ecto&#39;, &#39;go&#39;, &#39;hp&#39;, &#39;wordnet-hyponym&#39;, &#39;doid&#39;, &#39;bireme_decs_spa2020&#39;, &#39;radlex&#39;, &#39;envo&#39;, &#39;chebi_lite&#39;]</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;Influenza, commonly known as &quot;the flu&quot;, is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired ... Acetylcysteine for reducing the oxygen transport and caffeine to stimulate ... fever, tachypnea ... fiebre, taquipnea ... febre, taquipneia&#39;</span>
+<span class="go">lexicons loaded ready to use:</span>
+<span class="go">[&#39;osci&#39;, &#39;bireme_decs_por2020&#39;, &#39;radlex&#39;, &#39;go&#39;, &#39;envo&#39;, &#39;doid&#39;, &#39;chebi_lite&#39;, &#39;ecto&#39;, &#39;bireme_decs_spa2020&#39;, &#39;bireme_decs_eng2020&#39;, &#39;wordnet-hyponym&#39;, &#39;cl&#39;, &#39;hp&#39;, &#39;lexicon&#39;]</span>
+
+<span class="go">lexicons with linked concepts:</span>
+<span class="go">[&#39;doid&#39;, &#39;bireme_decs_por2020&#39;, &#39;lexicon&#39;, &#39;bireme_decs_spa2020&#39;, &#39;osci&#39;, &#39;bireme_decs_eng2020&#39;, &#39;go&#39;, &#39;hp&#39;, &#39;cl&#39;, &#39;radlex&#39;, &#39;chebi_lite&#39;, &#39;ecto&#39;, &#39;envo&#39;]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;Influenza, commonly known as &quot;the flu&quot;, is an infectious disease caused by an influenza virus. Symptoms can be mild to severe. The most common symptoms include: a high fever, runny nose, sore throat, muscle pains, headache, coughing, and feeling tired ... Acetylcysteine for reducing the oxygen transport and caffeine to stimulate ... fever, tachypnea ... fiebre, taquipnea ... febre, taquipneia, ... neuronal stem cell, water vapour saturated air&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">entities</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;hp&quot;</span><span class="p">)</span> <span class="c1"># get_entities_mp uses multiprocessing (set n_cores param)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
-<span class="go">[[&#39;111&#39;, &#39;115&#39;, &#39;mild&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012825&#39;], [&#39;119&#39;, &#39;125&#39;, &#39;severe&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012828&#39;], [&#39;168&#39;, &#39;173&#39;, &#39;fever&#39;, &#39;http://purl.obolibrary.org/obo/HP_0001945&#39;], [&#39;181&#39;, &#39;185&#39;, &#39;nose&#39;, &#39;http://purl.obolibrary.org/obo/UBERON_0000004&#39;], [&#39;200&#39;, &#39;206&#39;, &#39;muscle&#39;, &#39;http://purl.obolibrary.org/obo/UBERON_0005090&#39;], [&#39;214&#39;, &#39;222&#39;, &#39;headache&#39;, &#39;http://purl.obolibrary.org/obo/HP_0002315&#39;], [&#39;224&#39;, &#39;232&#39;, &#39;coughing&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012735&#39;], [&#39;246&#39;, &#39;251&#39;, &#39;tired&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012378&#39;], [&#39;288&#39;, &#39;294&#39;, &#39;oxygen&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15379&#39;], [&#39;295&#39;, &#39;304&#39;, &#39;transport&#39;, &#39;http://purl.obolibrary.org/obo/GO_0006810&#39;], [&#39;335&#39;, &#39;340&#39;, &#39;fever&#39;, &#39;http://purl.obolibrary.org/obo/HP_0001945&#39;], [&#39;342&#39;, &#39;351&#39;, &#39;tachypnea&#39;, &#39;http://purl.obolibrary.org/obo/HP_0002789&#39;], [&#39;175&#39;, &#39;185&#39;, &#39;runny nose&#39;, &#39;http://purl.obolibrary.org/obo/HP_0031417&#39;], [&#39;187&#39;, &#39;198&#39;, &#39;sore throat&#39;, &#39;http://purl.obolibrary.org/obo/HP_0033050&#39;]]</span>
+<span class="go">[[&#39;111&#39;, &#39;115&#39;, &#39;mild&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012825&#39;], [&#39;119&#39;, &#39;125&#39;, &#39;severe&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012828&#39;], [&#39;168&#39;, &#39;173&#39;, &#39;fever&#39;, &#39;http://purl.obolibrary.org/obo/HP_0001945&#39;], [&#39;181&#39;, &#39;185&#39;, &#39;nose&#39;, &#39;http://purl.obolibrary.org/obo/UBERON_0000004&#39;], [&#39;200&#39;, &#39;206&#39;, &#39;muscle&#39;, &#39;http://purl.obolibrary.org/obo/UBERON_0005090&#39;], [&#39;214&#39;, &#39;222&#39;, &#39;headache&#39;, &#39;http://purl.obolibrary.org/obo/HP_0002315&#39;], [&#39;224&#39;, &#39;232&#39;, &#39;coughing&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012735&#39;], [&#39;246&#39;, &#39;251&#39;, &#39;tired&#39;, &#39;http://purl.obolibrary.org/obo/HP_0012378&#39;], [&#39;288&#39;, &#39;294&#39;, &#39;oxygen&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15379&#39;], [&#39;295&#39;, &#39;304&#39;, &#39;transport&#39;, &#39;http://purl.obolibrary.org/obo/GO_0006810&#39;], [&#39;335&#39;, &#39;340&#39;, &#39;fever&#39;, &#39;http://purl.obolibrary.org/obo/HP_0001945&#39;], [&#39;342&#39;, &#39;351&#39;, &#39;tachypnea&#39;, &#39;http://purl.obolibrary.org/obo/HP_0002789&#39;], [&#39;415&#39;, &#39;419&#39;, &#39;cell&#39;, &#39;http://purl.obolibrary.org/obo/CL_0000000&#39;], [&#39;175&#39;, &#39;185&#39;, &#39;runny nose&#39;, &#39;http://purl.obolibrary.org/obo/HP_0031417&#39;], [&#39;187&#39;, &#39;198&#39;, &#39;sore throat&#39;, &#39;http://purl.obolibrary.org/obo/HP_0033050&#39;], [&#39;288&#39;, &#39;304&#39;, &#39;oxygen transport&#39;, &#39;http://purl.obolibrary.org/obo/GO_0015671&#39;], [&#39;410&#39;, &#39;419&#39;, &#39;stem cell&#39;, &#39;http://purl.obolibrary.org/obo/CL_0000034&#39;], [&#39;401&#39;, &#39;419&#39;, &#39;neuronal stem cell&#39;, &#39;http://purl.obolibrary.org/obo/CL_0000047&#39;]]</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">entities</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;bireme_decs_por2020&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">entities</span><span class="p">)</span>
-<span class="go">[[&#39;0&#39;, &#39;9&#39;, &#39;Influenza&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D007251&#39;], [&#39;78&#39;, &#39;87&#39;, &#39;influenza&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D007251&#39;], [&#39;378&#39;, &#39;383&#39;, &#39;febre&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D005334&#39;], [&#39;385&#39;, &#39;395&#39;, &#39;taquipneia&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D059246&#39;]]</span>
+<span class="go">[[&#39;0&#39;, &#39;9&#39;, &#39;Influenza&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D007251&#39;], [&#39;78&#39;, &#39;87&#39;, &#39;influenza&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D007251&#39;], [&#39;378&#39;, &#39;383&#39;, &#39;febre&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D005334&#39;], [&#39;385&#39;, &#39;395&#39;, &#39;taquipneia&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D059246&#39;], [&#39;410&#39;, &#39;414&#39;, &#39;stem&#39;, &#39;https://decs.bvsalud.org/ths/?filter=ths_regid&amp;q=D017348&#39;]]</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">create_lexicon</span><span class="p">([</span><span class="s2">&quot;gene1&quot;</span><span class="p">,</span> <span class="s2">&quot;gene2&quot;</span><span class="p">,</span> <span class="s2">&quot;gene3&quot;</span><span class="p">],</span> <span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
 <span class="go">wrote genelist lexicon</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
+<span class="go">================</span>
+<span class="go">gene1</span>
+<span class="go">gene2</span>
+<span class="go">gene3</span>
+<span class="go">================</span>
+<span class="go">================</span>
+<span class="go">================</span>
+<span class="go">================</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">delete_lexicon</span><span class="p">(</span><span class="s2">&quot;genelist&quot;</span><span class="p">)</span>
 <span class="go">deleted genelist lexicon</span>
+
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">download_lexicon</span><span class="p">(</span><span class="s2">&quot;https://github.com/lasigeBioTM/MER/raw/biocreative2017/data/ChEBI.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
 <span class="go">wrote chebi lexicon</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;chebi&quot;</span><span class="p">)</span>
+<span class="go">================</span>
+<span class="go">lannate</span>
+<span class="go">1.2.di.o.oleoyl.3.o..beta.d.galactopyranosyl..sn.glycerol</span>
+<span class="go">manganese.2..</span>
+<span class="go">n.butyraldoxime</span>
+<span class="go">brocillin</span>
+<span class="go">beta.d.glc..1..4...l.alpha.d.hep...1..3...l.alpha.d.hep</span>
+<span class="go">.clo3....</span>
+<span class="go">tetrasulfanide</span>
+<span class="go">bis.perfluorobutylethene</span>
+<span class="go">3..gmp</span>
+<span class="go">================</span>
+<span class="go">.5z.8z.14z..11.12.epoxyicosa.5.8.14.trienoic acid</span>
+<span class="go">presqualene diphosphate</span>
+<span class="go">tuberculosinol diphosphate</span>
+<span class="go">1.2.3.4.butanetetralyl tetranitrate</span>
+<span class="go">soyasaponin bb</span>
+<span class="go">trilithium citrate</span>
+<span class="go">.s..2..o.chlorophenyl..2..methylamino.cyclohexanone hydrochloride</span>
+<span class="go">beta.l.ara4n.lipid a.2..</span>
+<span class="go">7.chloroindole.3.acetic acid</span>
+<span class="go">.e..3..trifluoromethyl.cinnamic acid</span>
+<span class="go">================</span>
+<span class="go">dopamine dimethyl ether</span>
+<span class="go">acetyl.2...5...phosphoribosyl..3..dephospho.coenzyme a serine residue</span>
+<span class="go">3.methylbut.3.enyl diphosphate trianion</span>
+<span class="go">disodium 3.3..azobis .6.hydroxybenzoate.</span>
+<span class="go">potassium mercuric iodide</span>
+<span class="go">nickel.ii. sulfate .1.1.</span>
+<span class="go">fentanyl dihydrogen citrate</span>
+<span class="go">.gal.1 .glcnac.1 .man.1</span>
+<span class="go">sodium nitroprusside dihydrate</span>
+<span class="go">cholic acid taurine conjugate</span>
+<span class="go">================</span>
+<span class="go">.s..4.amino.5.oxopentanoic acid</span>
+<span class="go">glutathione disulfide</span>
+<span class="go">hydroquinone benzyl</span>
+<span class="go">6.hydroxyriboflavin 5...trihydrogen</span>
+<span class="go">dopamine dimethyl</span>
+<span class="go">3.methylbut.3.enyl diphosphate</span>
+<span class="go">disodium 3.3..azobis</span>
+<span class="go">potassium mercuric</span>
+<span class="go">fentanyl dihydrogen</span>
+<span class="go">cholic acid</span>
+<span class="go">================</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="semantic-similarities">
 <h1>Semantic Similarities<a class="headerlink" href="#semantic-similarities" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202104.db.gz
-$ gunzip -N chebi202104.db.gz
+<div class="code shell highlight-default"><div class="highlight"><pre><span></span>$ curl -L -O http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202302.db.gz
+$ gunzip -N chebi202302.db.gz
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">merpy</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">process_lexicon</span><span class="p">(</span><span class="s2">&quot;lexicon&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">document</span> <span class="o">=</span> <span class="s2">&quot;α-maltose and nicotinic acid was found, but not nicotinic acid D-ribonucleotide&quot;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">entities</span> <span class="o">=</span> <span class="n">merpy</span><span class="o">.</span><span class="n">get_entities</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">&quot;lexicon&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">merpy</span><span class="o">.</span><span class="n">get_similarities</span><span class="p">(</span><span class="n">entities</span><span class="p">,</span> <span class="s1">&#39;chebi.db&#39;</span><span class="p">)</span>
-<span class="go">[[&#39;0&#39;, &#39;9&#39;, &#39;α-maltose&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_18167&#39;, 0.02834388514184269], [&#39;14&#39;, &#39;28&#39;, &#39;nicotinic acid&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15940&#39;, 0.07402224403263755], [&#39;48&#39;, &#39;62&#39;, &#39;nicotinic acid&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15940&#39;, 0.07402224403263755], [&#39;48&#39;, &#39;79&#39;, &#39;nicotinic acid D-ribonucleotide&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15763&#39;, 0.07402224403263755]]</span>
+<span class="go">[[&#39;0&#39;, &#39;9&#39;, &#39;α-maltose&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_18167&#39;, 0.026437365432380268], [&#39;14&#39;, &#39;28&#39;, &#39;nicotinic acid&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15940&#39;, 0.07969957014235445], [&#39;48&#39;, &#39;62&#39;, &#39;nicotinic acid&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15940&#39;, 0.07969957014235445], [&#39;48&#39;, &#39;79&#39;, &#39;nicotinic acid D-ribonucleotide&#39;, &#39;http://purl.obolibrary.org/obo/CHEBI_15763&#39;, 0.07969957014235445]]</span>
 </pre></div>
 </div>
 </div>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to merpy’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, A. Lamurias and F. Couto.
-
-    </p>
+    <p>&#169; Copyright 2021, A. Lamurias and F. Couto.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
