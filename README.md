@@ -19,6 +19,7 @@ More information about MER can be found in:
 
 **NEW**
 - Package lexicons202302.tgz is available
+- New examples added, namely the ontologies: OSCI, CL, ENVO, and ECTO  
 - Docker image available: https://hub.docker.com/r/fjmc/merpy-image
 - Package lexicons202103.tgz is available
 - Multilingual lexicons using DeCS
