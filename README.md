@@ -2,6 +2,8 @@
 
 # MER (Minimal Named-Entity Recognizer) inside Python
 
+https://pypi.org/project/merpy
+
 MER is a Named-Entity Recognition tool that identifies terms from any lexicon within input text, providing their exact locations (annotations). 
 It can also link recognized entities to their respective classes when provided with an ontology (OWL file).
 
