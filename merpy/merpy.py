@@ -385,7 +385,7 @@ def download_mer():
     shutil.rmtree("MER-master/")
 
 
-def download_lexicons(download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons202302.tgz"):
+def download_lexicons(download_link="http://labs.rd.ciencias.ulisboa.pt/mer/data/lexicons202407.tgz"):
     """Download preprocessed lexicons
 
     :param link: link with tar file containing preprocessed lexicons
@@ -693,7 +693,7 @@ def get_similarities(entities, database):
     :type entities: list
     :param database: filename with db file containing the DiShIn database to use, for example: chebi.db
 
-                     wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202302.db.gz; gunzip -N chebi202302.db.gz
+                     wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202407.db.gz; gunzip -N chebi202407.db.gz
     :type database: string
 
     :return: list of entities including for each entity the similarity value of the most similar entity (excluding itself) 
