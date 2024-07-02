@@ -9,6 +9,11 @@ It can also link recognized entities to their respective classes when provided w
 
 A demo is available at: [MER Demo](https://labs.rd.ciencias.ulisboa.pt/mer/)
 
+[Package](https://pypi.org/project/merpy/)
+
+[Package documentation](https://merpy.readthedocs.io/en/latest/)
+
+
 ## New Stuff
 
 ### 2024
@@ -23,11 +28,6 @@ A demo is available at: [MER Demo](https://labs.rd.ciencias.ulisboa.pt/mer/)
 - **MULTILINGUAL**: English, Spanish, and Portuguese lexicons using DeCS.
 - **PYTHON**: Interface: [lasigeBioTM/merpy](https://github.com/lasigeBioTM/merpy/).
 - **SIMILARITY**: `get_similarities.sh` finds the most similar term also recognized. See [here](https://github.com/lasigeBioTM/MER#Similarity).
-
-
-## Documentation
-
-https://merpy.readthedocs.io/en/latest/
 
 ## Dependencies
 
