@@ -6,14 +6,14 @@ with open("README.md", "r") as fh:
 
 setup(
     name="merpy",
-    version="1.7.12",
+    version="1.7.13",
     description="Use Minimal Named-Entity Recognizer (MER) inside python",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Andre Lamurias",
     author_email="alamurias@lasige.di.fc.ul.pt",
     maintainer="Francisco M Couto",
-    maintainer_email="fjcouto@edu.ulisboa.pt",
+    maintainer_email="fjcouto@ciencias.ulisboa.pt",
     packages=["merpy"],
     keywords=["ner", "named-entity recognition", "entity linking", "ontologies"],
     url="https://github.com/lasigeBioTM/merpy",
