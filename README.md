@@ -1,28 +1,27 @@
 [![Downloads](https://pepy.tech/badge/merpy)](https://pepy.tech/project/merpy)
 
-Use MER scripts inside python.
+# MER (Minimal Named-Entity Recognizer) inside Python
 
+MER is a Named-Entity Recognition tool that identifies terms from any lexicon within input text, providing their exact locations (annotations). 
+It can also link recognized entities to their respective classes when provided with an ontology (OWL file).
 
-(from the MER repository)
+A demo is available at: [MER Demo](https://labs.rd.ciencias.ulisboa.pt/mer/)
 
-MER is a Named-Entity Recognition tool which given any lexicon and any input text returns the list of 
-terms recognized in the text, including their exact location (annotations).
+## New Stuff
 
-Given an ontology (owl file) MER is also able to link the entities to their classes.
+### 2024
+- **LEXICONS**: Package [here](https://labs.rd.ciencias.ulisboa.pt/mer/lexicons202407.tgz) is available.
+- **COMMENTS**: More comments were added to the scripts to improve readability.
 
-More information about MER can be found in:
-- MER: a Shell Script and Annotation Server for Minimal Named Entity Recognition and Linking, F. Couto and A. Lamurias, Journal of Cheminformatics, 10:58, 2018
-[https://doi.org/10.1186/s13321-018-0312-9]
-- MER: a Minimal Named-Entity Recognition Tagger and Annotation Server, F. Couto, L. Campos, and A. Lamurias, in BioCreative V.5 Challenge Evaluation, 2017
-[https://www.researchgate.net/publication/316545534_MER_a_Minimal_Named-Entity_Recognition_Tagger_and_Annotation_Server]
+### 2023
+- **ONTOLOGIES**: New examples added, namely the ontologies: OSCI, CL, ENVO, and ECTO.
 
+### 2021
+- **DOCKER**: Image available: [fjmc/mer-image](https://hub.docker.com/r/fjmc/mer-image).
+- **MULTILINGUAL**: English, Spanish, and Portuguese lexicons using DeCS.
+- **PYTHON**: Interface: [lasigeBioTM/merpy](https://github.com/lasigeBioTM/merpy/).
+- **SIMILARITY**: `get_similarities.sh` finds the most similar term also recognized. See [here](https://github.com/lasigeBioTM/MER#Similarity).
 
-**NEW**
-- Package lexicons202302.tgz is available
-- New examples added, namely the ontologies: OSCI, CL, ENVO, and ECTO  
-- Docker image available: https://hub.docker.com/r/fjmc/merpy-image
-- Package lexicons202103.tgz is available
-- Multilingual lexicons using DeCS
 
 ## Documentation
 
