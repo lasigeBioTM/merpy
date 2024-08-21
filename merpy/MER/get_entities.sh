@@ -191,7 +191,7 @@ get_entities_source () {
     if [ -e "$source"_links.tsv ]; then
         while read -r line; do
             local label=$(cut -d$'\t' -f3- <<< "$line")
-            local text=$(sed "s/[^[:alnum:][:space:]()]/./g" <<< "$label") # Replace special characters
+            local text=$(sed "s/[^[:alnum:][:space:]()-]/./g" <<< "$label") # Replace special characters
             text=$(sed -e 's/[[:space:]()@]\+/ /g' <<< "$text") # Remove multiple whitespace
             text=$(sed -e 's/\.$//' -e 's/\. / /g' <<< "$text") # Remove full stops
             text=$(tr '[:upper:]' '[:lower:]' <<< "$text") # Make text lowercase
