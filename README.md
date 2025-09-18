@@ -16,6 +16,9 @@ A demo is available at: [MER Demo](https://labs.rd.ciencias.ulisboa.pt/mer/)
 
 ## New Stuff
 
+### 2025
+- **LEXICONS**: Package [here](https://labs.rd.ciencias.ulisboa.pt/mer/lexicons202506.tgz) is available.
+  
 ### 2024
 - **LEXICONS**: Package [here](https://labs.rd.ciencias.ulisboa.pt/mer/lexicons202407.tgz) is available.
 - **COMMENTS**: More comments were added to the scripts to improve readability.
