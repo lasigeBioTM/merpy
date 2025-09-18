@@ -107,8 +107,8 @@ wrote chebi lexicon
 ## Semantic Similarities 
 
 ```bash
-wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202407.db.gz
-gunzip -N chebi202407.db.gz
+wget http://labs.rd.ciencias.ulisboa.pt/dishin/chebi202506.db.gz
+gunzip -N chebi202506.db.gz
 ```
 
 ```python
